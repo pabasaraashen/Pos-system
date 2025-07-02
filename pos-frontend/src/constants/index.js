@@ -25,7 +25,7 @@ export const MostPopuler = [
     {
       id: 3,
       image: crabs,
-      name: 'Crab Curry',
+      name: 'Jaffna Crab Curry',
       numberOfOrders: 300,
     },
     {
