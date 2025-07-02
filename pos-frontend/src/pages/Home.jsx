@@ -3,14 +3,15 @@ import Bottomnavbar from '../components/Bottomnavbar';
 import Greatings from '../components/home/Greatings';
 import Card1 from '../components/home/Card1';
 import RecentOrder from '../components/home/RecentOrder';
+import Populer from '../components/home/Populer';
 import { BsCashCoin } from "react-icons/bs";
 import { GrInProgress } from "react-icons/gr";
 
 const Home = () => {
   return (
-    <section className='bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden flex gap-1'>
+    <section className='bg-[#1a1a1a] h-[calc(100vh-5rem)] overflow-hidden flex gap-4'>
        {/*left*/}
-       <div className='flex-[3] bg-[#ffffff]'>
+       <div className='flex-[3] bg-[#a0a0a0]'>
         <Greatings/>
         <div className='flex items-center w-full gap-3 px-8 mt-8'>
             <Card1 title="Total Earnings" icon={<BsCashCoin/>} number={512} footerNum={1.6}/>
@@ -20,7 +21,9 @@ const Home = () => {
        </div>
 
        {/*right*/}
-       <div className='flex-[2] bg-[#aeaeae]'></div>
+       <div className='flex-[2] bg-[#1a1a1a]'> 
+        <Populer/>
+       </div>
        <Bottomnavbar/>
     </section>
   )
