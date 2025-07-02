@@ -15,7 +15,7 @@ const Header = () => {
      </div>
 
      {/*search bar*/}
-     <div className="flex items-center gap-4 bg-[#1a1a1a] rounded-[20px] px-5 py-2 w-[500px]">
+     <div className="flex items-center gap-4 bg-[#1f1f1f] rounded-[20px] px-5 py-2 w-[500px]">
         <FaSearch className="text-[#f5f5f5]" />
         <input
          type="text"
