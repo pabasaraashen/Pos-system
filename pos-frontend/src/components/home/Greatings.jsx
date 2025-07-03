@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BiDish } from "react-icons/bi";
 
 const Greatings = () => {
     const[dateTime, setDateTime] = useState(new Date())
@@ -25,6 +26,12 @@ const Greatings = () => {
         <div>
             <h1 className='text-[#000000] text-2xl font-bold'>Good Morning, Pabasara</h1>
         </div>
+        <div className="ml-[350px]">
+  <button className="flex items-center gap-2 bg-[#f6b100] hover:bg-[#dee26c] text-black font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300">
+    <BiDish size={24} />
+    <span>Create Order</span>
+  </button>
+</div>
         <div>
             <h1 className="text-[#000000] text-3xl font-bold w-[130px]">{formatTime(dateTime)}</h1>
             <p className="text-[#252525] text-sm">{formatDate(dateTime)}</p>

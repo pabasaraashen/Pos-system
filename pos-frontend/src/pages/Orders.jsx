@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Bottomnavbar from '../components/Bottomnavbar';
 import Ordercard from '../components/shared/orders/Ordercard';
 import BackButton from '../components/shared/BackButton';
 
@@ -47,7 +46,7 @@ const Orders = () => {
              <Ordercard/>
         </div>
        
-        <Bottomnavbar/>
+        
     </section>
   )
 }

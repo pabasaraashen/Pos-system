@@ -1,5 +1,4 @@
 import React from 'react';
-import Bottomnavbar from '../components/Bottomnavbar';
 import Greatings from '../components/home/Greatings';
 import Card1 from '../components/home/Card1';
 import RecentOrder from '../components/home/RecentOrder';
@@ -24,7 +23,7 @@ const Home = () => {
        <div className='flex-[2] bg-[#1a1a1a]'> 
         <Populer/>
        </div>
-       <Bottomnavbar/>
+       
     </section>
   )
 }
