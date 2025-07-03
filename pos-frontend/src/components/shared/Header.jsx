@@ -24,24 +24,24 @@ const Header = () => {
       <div className="flex items-center gap-14 min-w-fit">
         <button
           onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-[#e6dfdf] px-4 py-2 bg-[#4e4d4d] rounded-[20px] text-sm">
+          className="flex items-center gap-2 text-[#e6dfdf] px-4 py-2 bg-[#4e4d4d] rounded-[20px] text-md">
           <FaHome size={14} />
           Home
         </button>
         <button
           onClick={() => navigate("/orders")}
-          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-sm">
+          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-md">
           <IoReorderFourSharp size={14} />
           Orders
         </button>
         <button
           onClick={() => navigate("/tables")}
-          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-sm">
+          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-md">
           <MdTableBar size={14} />
           Tables
         </button>
         <button
-          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-sm">
+          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-md">
           <CiCircleMore size={14} />
           More
         </button>

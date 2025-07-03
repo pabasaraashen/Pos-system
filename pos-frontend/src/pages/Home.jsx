@@ -8,7 +8,7 @@ import { RiProgress1Line } from "react-icons/ri";
 
 const Home = () => {
   return (
-    <section className='bg-[#1a1a1a] h-[calc(100vh-5rem)] overflow-hidden flex gap-4'>
+    <section className='bg-[#1a1a1a] h-[calc(102vh-5rem)] overflow-hidden flex gap-4'>
        {/*left*/}
        <div className='flex-[3] bg-[#a0a0a0] rounded-lg'>
         <Greatings/>
