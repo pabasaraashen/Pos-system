@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaSearch, FaUserCircle, FaBell, FaHome } from 'react-icons/fa';
 import { IoReorderFourSharp } from "react-icons/io5";
 import { MdTableBar } from 'react-icons/md';
@@ -8,7 +8,7 @@ import logo from "../../assets/images/logo.jpg";
 
 const Header = () => {
   const navigate = useNavigate();
-
+  
   return (
     <header className="flex items-center justify-between px-6 py-4 bg-[#1a1a1a] gap-4 flex-wrap">
       
