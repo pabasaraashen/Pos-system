@@ -1,8 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const TableCard = ({key, name, status, initials}) => {
+    
+    const navigate = useNavigate();
+    const handleClick = () => {
+        if(status === "Booked")
+        return;
+        navigate('/menu');    
+    }
+
   return (
-    <div key={key} className='w-[300px] bg-[#525252] hover:bg-[#5e5e5e] rounded-lg mb-4 p-4 cursor-pointer'>
+    <div onClick={handleClick} key={key} className='w-[300px] bg-[#525252] hover:bg-[#5e5e5e] rounded-lg mb-4 p-4 cursor-pointer'>
        <div className='flex items-center justify-between px-1'>
         <h1 className='text-white text-xl'>{name}</h1>
         <p className={`${status === "Booked" ? "text-green-600 bg-[#2e4a40]" : "bg-[#664a04] text-white"} px-2 py-1 rounded-lg`}>
