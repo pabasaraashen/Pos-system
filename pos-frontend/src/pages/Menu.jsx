@@ -26,7 +26,27 @@ const Menu = () => {
        </div>
 
        {/*right*/}
-       <div className='flex-[3] bg-[#aeaeae]'> 
+       <div className='flex-[2.5] bg-[#1a1a1a] mt-4 mr-3 h-[780px] rounded-lg pt-2 '>
+         {/*customer info*/}
+         <div className='flex items-center justify-between px-4 py-3'>
+            <div className='flex flex-col items-start'>
+                <h1 className='text-md text-[#f5f5f5] font-semibold'>Customer Name</h1>
+                <p className='text-xs text-[#ababab] font-medium mt-1'>#101/Dine in</p>
+                <p className='text-xs text-[#ababab] font-medium mt-2'>January 19, 2025 05:34 PM</p>
+            </div>
+            <button className='bg-[#26106e] p-3 text-xl font-bold rounded-lg'>CN</button>
+         </div>
+         <hr className='border-[#2a2a2a] border-t-2'/>
+         {/*cart items*/}
+         <div className='px-4 py-2'>
+            <h1 className='text-lg text-[#e4e4e4] font-semibold'>Order Details</h1>
+            <div className='mt-4 overflow-y-scroll scroll-hide h-[380px]'>
+                <h1 className='text-[#ababab] font-semibold text-md'>
+                    Chicken Tikka
+                </h1>
+            </div>
+         </div>
+         {/*bills*/} 
         
        </div>
 
