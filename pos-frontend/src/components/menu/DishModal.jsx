@@ -13,14 +13,14 @@ const DishModal = ({ dish, isOpen, onClose, onCountChange }) => {
           ✕
         </button>
 
-        <div className="flex flex-col items-center">
-  <h2 className="text-2xl font-bold mb-4">{dish.name}</h2>
-  <p className="text-lg text-gray-700 mb-2">Price: Rs.{dish.price}</p>
-  <div className="flex items-center gap-4 mt-4">
-    <button
+      <div className="flex flex-col items-center">
+       <h2 className="text-2xl font-bold mb-4">{dish.name}</h2>
+       <p className="text-lg text-gray-700 mb-2">Price: Rs.{dish.price}</p>
+      <div className="flex items-center gap-4 mt-4">
+      <button
       onClick={() => onCountChange(-1)}
       className="bg-red-500 text-white px-3 py-1 rounded text-xl"
-    >
+     >
       −
     </button>
     <span className="text-xl font-bold">{dish.count}</span>
@@ -30,8 +30,22 @@ const DishModal = ({ dish, isOpen, onClose, onCountChange }) => {
     >
       +
     </button>
-  </div>
+    </div>
+   </div>
+    
+    <div className="mt-6 flex justify-center">
+  <button
+    onClick={() => {
+      // Optional: Add to order/cart logic
+      console.log(`${dish.count} x ${dish.name} added`);
+      onClose(); // Close modal after adding
+    }}
+    className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded"
+  >
+    Add to Order
+  </button>
 </div>
+
 
       </div>
     </div>
