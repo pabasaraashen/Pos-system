@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsCartCheckFill } from "react-icons/bs";
 
 const DishModal = ({ dish, isOpen, onClose, onCountChange }) => {
   if (!isOpen || !dish) return null;
@@ -33,18 +34,19 @@ const DishModal = ({ dish, isOpen, onClose, onCountChange }) => {
     </div>
    </div>
     
-    <div className="mt-6 flex justify-center">
+   <div className="mt-6 flex justify-center">
   <button
     onClick={() => {
-      // Optional: Add to order/cart logic
       console.log(`${dish.count} x ${dish.name} added`);
-      onClose(); // Close modal after adding
+      onClose();
     }}
-    className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded"
+    className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded flex items-center gap-2"
   >
-    Add to Order
+    Add To Cart
+    <BsCartCheckFill size={20} color="black"/>
   </button>
 </div>
+
 
 
       </div>
