@@ -54,13 +54,68 @@ const Menu = () => {
                   <div className='flex items-center gpa-3'>
                     <RiDashboard2Fill className='text-[#ababab] cursor-pointer size={20}'/>
                     <FaNotesMedical className='text-[#ababab] cursor-pointer size={20}'/>
-                  </div>  
+                  </div>
+                  <p className='text-[#f5f5f5] text-md font-bold'>Rs.123.00</p>  
                 </div>
               </div>
+
+              <div className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
+                <div className='flex items-center justify-between'>
+                <h1 className='text-[#ababab] font-semibold text-md'>
+                    Chicken Tikka
+                </h1>
+                <p className='text-[#ababab] font-semibold'>x2</p>
+                </div>
+                <div className='flex items-center justify-between mt-3'>
+                  <div className='flex items-center gpa-3'>
+                    <RiDashboard2Fill className='text-[#ababab] cursor-pointer size={20}'/>
+                    <FaNotesMedical className='text-[#ababab] cursor-pointer size={20}'/>
+                  </div>
+                  <p className='text-[#f5f5f5] text-md font-bold'>Rs.123.00</p>  
+                </div>
+              </div>
+
+              <div className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
+                <div className='flex items-center justify-between'>
+                <h1 className='text-[#ababab] font-semibold text-md'>
+                    Chicken Tikka
+                </h1>
+                <p className='text-[#ababab] font-semibold'>x2</p>
+                </div>
+                <div className='flex items-center justify-between mt-3'>
+                  <div className='flex items-center gpa-3'>
+                    <RiDashboard2Fill className='text-[#ababab] cursor-pointer size={20}'/>
+                    <FaNotesMedical className='text-[#ababab] cursor-pointer size={20}'/>
+                  </div>
+                  <p className='text-[#f5f5f5] text-md font-bold'>Rs.123.00</p>  
+                </div>
+              </div>
+
+               
             </div>
          </div>
-         {/*bills*/} 
-        
+
+         {/*bills*/}
+         <div className='flex items-center justify-between px-5 mt-2'>
+            <p className='text-base text-[#ababab] mt-2'>Item(4)</p>
+            <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.240.00</h1>
+         </div>
+         <div className='flex items-center justify-between px-5 mt-2'>
+            <p className='text-base text-[#ababab] mt-2'>Tax(5.25%)</p>
+            <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.20.00</h1>
+         </div>
+         <div className='flex items-center gap-3 px-5 mt-4'>
+           <button className='bg-[#1f1f1f] px-4 py-3 w-full rounded-lg text-[#ababab] font-semibold'>Cash</button>
+           <button className='bg-[#1f1f1f] px-4 py-3 w-full rounded-lg text-[#ababab] font-semibold'>Online</button>
+         </div>
+
+         <div className='flex items-center gap-3 px-5 mt-4'>
+           <button className='px-4 py-3 w-full rounded-lg bg-[#0f42ba]  text-[#f5f5f5] font-semibold'>Receipt</button>
+           <button className='px-4 py-3 w-full rounded-lg bg-[#c6b112]  text-[#f5f5f5] font-semibold'>Place Order</button>
+         </div>
+
+
+
        </div>
 
       {/**/}
