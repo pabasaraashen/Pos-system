@@ -22,7 +22,7 @@ const DishModal = ({ dish, isOpen, onClose, onCountChange }) => {
       onClick={() => onCountChange(-1)}
       className="bg-red-500 text-white px-3 py-1 rounded text-xl"
      >
-      −
+      -
     </button>
     <span className="text-xl font-bold">{dish.count}</span>
     <button
