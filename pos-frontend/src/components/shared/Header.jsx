@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaSearch, FaUserCircle, FaBell, FaHome } from 'react-icons/fa';
 import { IoReorderFourSharp } from "react-icons/io5";
 import { MdTableBar } from 'react-icons/md';
 import { CiCircleMore } from 'react-icons/ci';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // 🔥 Import useLocation
 import logo from "../../assets/images/logo.jpg";
 
 const Header = () => {
   const navigate = useNavigate();
-  
+  const location = useLocation(); // 🔥 Use location hook
+  const currentPath = location.pathname;
+
+  const isActive = (path) =>
+    currentPath === path ? "bg-[#4e4d4d]" : "hover:bg-[#4e4d4d]";
+
   return (
     <header className="flex items-center justify-between px-6 py-4 bg-[#1a1a1a] gap-4 flex-wrap">
       
@@ -24,19 +29,19 @@ const Header = () => {
       <div className="flex items-center gap-14 min-w-fit">
         <button
           onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-[#e6dfdf] px-4 py-2 bg-[#4e4d4d] rounded-[20px] text-md">
+          className={`flex items-center gap-2 text-[#e6dfdf] px-4 py-2 rounded-[20px] text-md ${isActive("/")}`}>
           <FaHome size={14} />
           Home
         </button>
         <button
           onClick={() => navigate("/orders")}
-          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-md">
+          className={`flex items-center gap-2 text-[#e6dfdf] px-4 py-2 rounded-[20px] text-md ${isActive("/orders")}`}>
           <IoReorderFourSharp size={14} />
           Orders
         </button>
         <button
           onClick={() => navigate("/tables")}
-          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-md">
+          className={`flex items-center gap-2 text-[#e6dfdf] px-4 py-2 rounded-[20px] text-md ${isActive("/tables")}`}>
           <MdTableBar size={14} />
           Tables
         </button>
