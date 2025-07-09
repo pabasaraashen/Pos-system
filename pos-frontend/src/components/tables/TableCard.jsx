@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useNavigate } from 'react-router-dom'
 
 const TableCard = ({key, name, status, initials}) => {
@@ -7,6 +8,7 @@ const TableCard = ({key, name, status, initials}) => {
     const handleClick = () => {
         if(status === "Booked")
         return;
+    //dispatch(updateTable({tableNo: }))
         navigate('/menu');    
     }
 

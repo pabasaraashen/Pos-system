@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { BiDish } from "react-icons/bi";
 import Modal from '../shared/Modal';
-import { useNavigate } from 'react-router-dom';
+import { useActionData, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCustomer } from '../../redux/customerSlice';
 
 const Greatings = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [dateTime, setDateTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const [name,setName] = useState();
+  const [id,setID] = useState();
+  const dispatch = useDispatch();
+
+  const handleCreateOrder = () => {
+    // send data to the store
+    dispatch(setCustomer({name, id}));
+    navigate("/menu");
+  }
 
   useEffect(() => {
     const timer = setInterval(() => setDateTime(new Date()), 1000);
@@ -47,14 +58,14 @@ const Greatings = () => {
           <Modal isOpen={isModalOpen} onClose={closeModal} title='Create Order'>
             <label className='block text-white mb-2 text-sm font-medium'>Customer Name</label>
             <div className='flex items-center border-b border-[#333] p-3 px-4 bg-[#1f1f1f]'>
-                <input type='text' placeholder='Enter Customer Name' id='' className='bg-transparent flex-1 text-white'/>
+                <input value={name} onChange={(e) => setName(e.target.value)} type='text' placeholder='Enter Customer Name' id='' className='bg-transparent flex-1 text-white'/>
             </div>
             <br/>
             <label className='block text-white mb-2 text-sm font-medium'>Customer ID</label>
             <div className='flex items-center border-b border-[#333] p-3 px-4 bg-[#1f1f1f]'>
-                <input type='text' placeholder='Enter Customer ID' id='' className='bg-transparent flex-1 text-white'/>
+                <input value={id} onChange={(e) => setID(e.target.value)} type='text' placeholder='Enter Customer ID' id='' className='bg-transparent flex-1 text-white'/>
             </div>
-            <button onClick={() => navigate("/tables")} className='w-full bg-[#f6b100] hover:bg-[#dee26c] text-black font-semibold  rounded-lg py-3 mt-4'>
+            <button onClick={handleCreateOrder} className='w-full bg-[#f6b100] hover:bg-[#dee26c] text-black font-semibold  rounded-lg py-3 mt-4'>
                 Create Order
             </button>
           </Modal>
