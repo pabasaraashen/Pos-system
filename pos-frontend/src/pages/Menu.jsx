@@ -1,21 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import BackButton from '../components/shared/BackButton';
 import MenuContainer from '../components/menu/MenuContainer';
-import { RiDashboard2Fill } from 'react-icons/ri';
+import { MdDelete } from "react-icons/md";
 import { FaNotesMedical } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeItem } from '../redux/cartSlice';
 
 const Menu = () => {
   const customerData = useSelector(state => state.customer);
   const cartData = useSelector((state) => state.cart);
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const scrollRef = useRef();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(scrollRef.current){
+        scrollRef.current.scrollTo({
+            top: scrollRef.current.scrollHeight,
+            behavior: "smooth"
+        })
+    }
+  })
+
+  // ✅ FIXED: correct arrow function syntax
+  const handleRemove = (itemID) => {
+    dispatch(removeItem(itemID));
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentDateTime(new Date());
-    }, 1000); // update every second
+    }, 1000);
 
-    return () => clearInterval(timer); // cleanup on unmount
+    return () => clearInterval(timer);
   }, []);
 
   const formatDateTime = (date) => {
@@ -31,6 +48,11 @@ const Menu = () => {
 
     return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, '0')}, ${date.getFullYear()} ${formattedHour}:${formattedMinute} ${ampm}`;
   };
+
+  const totalItems = cartData.reduce((sum, item) => sum + item.count, 0);
+  const totalPrice = cartData.reduce((sum, item) => sum + item.count * item.price, 0);
+  const tax = totalPrice * 0.0525;
+  const finalPrice = totalPrice + tax;
 
   return (
     <section className='bg-[#1a1a1a] h-[calc(100.8vh-5rem)] overflow-hidden flex gap-4'>
@@ -70,40 +92,47 @@ const Menu = () => {
         {/* cart items */}
         <div className='px-4 py-2'>
           <h1 className='text-lg text-[#e4e4e4] font-semibold'>Order Details</h1>
-          <div className='mt-4 overflow-y-scroll scroll-hide h-[380px]'>
-
-            {/* repeatable cart item */}
+          <div className='mt-4 overflow-y-scroll scroll-hide h-[380px]' ref={scrollRef}>
             {cartData.length === 0 ? (
-  <p className='text-white flex justify-center items-center h-[380px]'>Cart is empty.</p>
-) : cartData.map((Item) => (
-  <div key={Item.id} className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
-    <div className='flex items-center justify-between'>
-      <h1 className='text-[#ababab] font-semibold text-md'>{Item.name}</h1>
-      <p className='text-[#ababab] font-semibold'>x{Item.count}</p>
-    </div>
-    <div className='flex items-center justify-between mt-3'>
-      <div className='flex items-center gap-3'>
-        <RiDashboard2Fill className='text-[#ababab] cursor-pointer' size={20} />
-        <FaNotesMedical className='text-[#ababab] cursor-pointer' size={20} />
-      </div>
-      <p className='text-[#f5f5f5] text-md font-bold'>Rs.{(Item.price * Item.count).toFixed(2)}</p>
-    </div>
-  </div>
-))}
-
+              <p className='text-white flex justify-center items-center h-[380px]'>Cart is empty.</p>
+            ) : cartData.map((Item) => (
+              <div key={Item.id} className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
+                <div className='flex items-center justify-between'>
+                  <h1 className='text-[#ababab] font-semibold text-md'>{Item.name}</h1>
+                  <p className='text-[#ababab] font-semibold'>x{Item.count}</p>
+                </div>
+                <div className='flex items-center justify-between mt-3'>
+                  <div className='flex items-center gap-3'>
+                    <MdDelete
+                      onClick={() => handleRemove(Item.id)}
+                      className='text-[#ababab] cursor-pointer'
+                      size={20}
+                    />
+                    <FaNotesMedical className='text-[#ababab] cursor-pointer' size={20} />
+                  </div>
+                  <p className='text-[#f5f5f5] text-md font-bold'>Rs.{(Item.price * Item.count).toFixed(2)}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <hr className='border-[#2a2a2a] border-t-2' />
-
         {/* bill summary */}
         <div className='flex items-center justify-between px-5 mt-2'>
-          <p className='text-base text-[#ababab] mt-2'>Item(4)</p>
-          <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.240.00</h1>
+          <p className='text-base text-[#ababab] mt-2'>Item({totalItems})</p>
+          <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.{totalPrice.toFixed(2)}</h1>
         </div>
         <div className='flex items-center justify-between px-5 mt-2'>
           <p className='text-base text-[#ababab] mt-2'>Tax(5.25%)</p>
-          <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.20.00</h1>
+          <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.{tax.toFixed(2)}</h1>
+        </div>
+        <br/>
+
+        <hr className='border-[#2a2a2a] border-t-2' />
+        
+        <div className='flex items-center justify-between px-5 mt-2'>
+          <p className='text-base text-[#ababab] mt-2'>Total</p>
+          <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.{finalPrice.toFixed(2)}</h1>
         </div>
 
         {/* payment method buttons */}
