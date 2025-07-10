@@ -1,8 +1,25 @@
 import React from 'react';
 import { BsCartCheckFill } from "react-icons/bs";
+import { useDispatch } from 'react-redux';
+import { addItems } from '../../redux/cartSlice'; // ✅ Adjust path if needed
 
 const DishModal = ({ dish, isOpen, onClose, onCountChange }) => {
+  const dispatch = useDispatch();
+
   if (!isOpen || !dish) return null;
+
+  const handleAddToCart = () => {
+    const dishToAdd = {
+      id: dish.id,
+      name: dish.name,
+      price: dish.price,
+      count: dish.count || 1,
+    };
+
+    dispatch(addItems(dishToAdd));
+    console.log(`${dish.count} x ${dish.name} added to cart`);
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
@@ -14,41 +31,35 @@ const DishModal = ({ dish, isOpen, onClose, onCountChange }) => {
           ✕
         </button>
 
-      <div className="flex flex-col items-center">
-       <h2 className="text-2xl font-bold mb-4">{dish.name}</h2>
-       <p className="text-lg text-gray-700 mb-2">Price: Rs.{dish.price}</p>
-      <div className="flex items-center gap-4 mt-4">
-      <button
-      onClick={() => onCountChange(-1)}
-      className="bg-red-500 text-white px-3 py-1 rounded text-xl"
-     >
-      -
-    </button>
-    <span className="text-xl font-bold">{dish.count}</span>
-    <button
-      onClick={() => onCountChange(1)}
-      className="bg-green-500 text-white px-3 py-1 rounded text-xl"
-    >
-      +
-    </button>
-    </div>
-   </div>
-    
-   <div className="mt-6 flex justify-center">
-  <button
-    onClick={() => {
-      console.log(`${dish.count} x ${dish.name} added`);
-      onClose();
-    }}
-    className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded flex items-center gap-2"
-  >
-    Add To Cart
-    <BsCartCheckFill size={20} color="black"/>
-  </button>
-</div>
+        <div className="flex flex-col items-center">
+          <h2 className="text-2xl font-bold mb-4">{dish.name}</h2>
+          <p className="text-lg text-gray-700 mb-2">Price: Rs.{dish.price}</p>
+          <div className="flex items-center gap-4 mt-4">
+            <button
+              onClick={() => onCountChange(-1)}
+              className="bg-red-500 text-white px-3 py-1 rounded text-xl"
+            >
+              -
+            </button>
+            <span className="text-xl font-bold">{dish.count}</span>
+            <button
+              onClick={() => onCountChange(1)}
+              className="bg-green-500 text-white px-3 py-1 rounded text-xl"
+            >
+              +
+            </button>
+          </div>
+        </div>
 
-
-
+        <div className="mt-6 flex justify-center">
+          <button
+            onClick={handleAddToCart}
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded flex items-center gap-2"
+          >
+            Add To Cart
+            <BsCartCheckFill size={20} color="black" />
+          </button>
+        </div>
       </div>
     </div>
   );

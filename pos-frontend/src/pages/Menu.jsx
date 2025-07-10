@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 const Menu = () => {
   const customerData = useSelector(state => state.customer);
+  const cartData = useSelector((state) => state.cart);
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
   useEffect(() => {
@@ -72,61 +73,23 @@ const Menu = () => {
           <div className='mt-4 overflow-y-scroll scroll-hide h-[380px]'>
 
             {/* repeatable cart item */}
-            <div className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
-              <div className='flex items-center justify-between'>
-                <h1 className='text-[#ababab] font-semibold text-md'>Chicken Tikka</h1>
-                <p className='text-[#ababab] font-semibold'>x2</p>
-              </div>
-              <div className='flex items-center justify-between mt-3'>
-                <div className='flex items-center gpa-3'>
-                  <RiDashboard2Fill className='text-[#ababab] cursor-pointer' size={20} />
-                  <FaNotesMedical className='text-[#ababab] cursor-pointer' size={20} />
-                </div>
-                <p className='text-[#f5f5f5] text-md font-bold'>Rs.123.00</p>
-              </div>
-            </div>
-
-             <div className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
-              <div className='flex items-center justify-between'>
-                <h1 className='text-[#ababab] font-semibold text-md'>Chicken Tikka</h1>
-                <p className='text-[#ababab] font-semibold'>x2</p>
-              </div>
-              <div className='flex items-center justify-between mt-3'>
-                <div className='flex items-center gpa-3'>
-                  <RiDashboard2Fill className='text-[#ababab] cursor-pointer' size={20} />
-                  <FaNotesMedical className='text-[#ababab] cursor-pointer' size={20} />
-                </div>
-                <p className='text-[#f5f5f5] text-md font-bold'>Rs.123.00</p>
-              </div>
-            </div>
-
-             <div className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
-              <div className='flex items-center justify-between'>
-                <h1 className='text-[#ababab] font-semibold text-md'>Chicken Tikka</h1>
-                <p className='text-[#ababab] font-semibold'>x2</p>
-              </div>
-              <div className='flex items-center justify-between mt-3'>
-                <div className='flex items-center gpa-3'>
-                  <RiDashboard2Fill className='text-[#ababab] cursor-pointer' size={20} />
-                  <FaNotesMedical className='text-[#ababab] cursor-pointer' size={20} />
-                </div>
-                <p className='text-[#f5f5f5] text-md font-bold'>Rs.123.00</p>
-              </div>
-            </div>
-
-             <div className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
-              <div className='flex items-center justify-between'>
-                <h1 className='text-[#ababab] font-semibold text-md'>Chicken Tikka</h1>
-                <p className='text-[#ababab] font-semibold'>x2</p>
-              </div>
-              <div className='flex items-center justify-between mt-3'>
-                <div className='flex items-center gpa-3'>
-                  <RiDashboard2Fill className='text-[#ababab] cursor-pointer' size={20} />
-                  <FaNotesMedical className='text-[#ababab] cursor-pointer' size={20} />
-                </div>
-                <p className='text-[#f5f5f5] text-md font-bold'>Rs.123.00</p>
-              </div>
-            </div>
+            {cartData.length === 0 ? (
+  <p className='text-white flex justify-center items-center h-[380px]'>Cart is empty.</p>
+) : cartData.map((Item) => (
+  <div key={Item.id} className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
+    <div className='flex items-center justify-between'>
+      <h1 className='text-[#ababab] font-semibold text-md'>{Item.name}</h1>
+      <p className='text-[#ababab] font-semibold'>x{Item.count}</p>
+    </div>
+    <div className='flex items-center justify-between mt-3'>
+      <div className='flex items-center gap-3'>
+        <RiDashboard2Fill className='text-[#ababab] cursor-pointer' size={20} />
+        <FaNotesMedical className='text-[#ababab] cursor-pointer' size={20} />
+      </div>
+      <p className='text-[#f5f5f5] text-md font-bold'>Rs.{(Item.price * Item.count).toFixed(2)}</p>
+    </div>
+  </div>
+))}
 
           </div>
         </div>
