@@ -13,10 +13,6 @@ connectDB();
 // Root Endpoint
 app.get("/", (req,res) => {
 
-    const err = createHttpError(404, "something gone wrong!");
-    throw err;
-
-
     res.json({message : "Hello from POS Server!"});
 })
 
