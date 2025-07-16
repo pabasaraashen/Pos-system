@@ -16,6 +16,9 @@ app.get("/", (req,res) => {
     res.json({message : "Hello from POS Server!"});
 })
 
+//Other Endpoints
+app.use(globalErrorHandler);
+
 //Globval Error Handler
 app.use(globalErrorHandler);
 
