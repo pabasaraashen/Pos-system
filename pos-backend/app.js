@@ -5,10 +5,14 @@ const connectDB = require("./config/database");
 const config = require("./config/config");
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
 const createHttpError = require("http-errors");
+
 const app = express();
 
 const PORT = config.port;
 connectDB();
+
+//Middlewares
+app.use(express.json()); // parse incoming request in json format
 
 // Root Endpoint
 app.get("/", (req,res) => {
@@ -17,9 +21,9 @@ app.get("/", (req,res) => {
 })
 
 //Other Endpoints
-app.use(globalErrorHandler);
+app.use("/api/user", require("./routes/userRoute"));
 
-//Globval Error Handler
+//Global Error Handler
 app.use(globalErrorHandler);
 
 // Server
