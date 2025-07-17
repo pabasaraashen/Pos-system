@@ -18,12 +18,12 @@ const addOrder = async (req, res, next) => {
 
 const getOrderById = async (req, res, next) => {
      try{
-        const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      const error = createHttpError(404, "Invalid id!");
-      return next(error);
-    }
+       // create error when order with invalid ID
+       const { id } = req.params;
+       if (!mongoose.Types.ObjectId.isValid(id)) {
+       const error = createHttpError(404, "Invalid id!");
+       return next(error);
+       }
 
 
 
@@ -55,12 +55,14 @@ const getOrders = async (req, res, next) => {
 const updateOrder = async (req, res, next) => {
      try{
         const {orderStatus} = req.body;
-         const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      const error = createHttpError(404, "Invalid id!");
-      return next(error);
-    }
+        // create error when order with invalid ID
+        const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+        const error = createHttpError(404, "Invalid id!");
+        return next(error);
+        }
 
 
         
