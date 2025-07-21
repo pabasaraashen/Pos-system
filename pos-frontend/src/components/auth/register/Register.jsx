@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const Register = () => {
+const Register = ({ onSwitchToLogin }) => {
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
-    <>
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center px-4">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
         <div className="text-center">
@@ -17,17 +18,13 @@ const Register = () => {
                 Full Name
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                 
-                </div>
                 <input
                   id="name"
                   name="name"
                   type="text"
                   required
-                  className="appearance-none rounded-lg relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                   placeholder="Enter your full name"
-                  
                 />
               </div>
             </div>
@@ -37,16 +34,13 @@ const Register = () => {
                 Phone Number
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  </div>
                 <input
                   id="phone"
                   name="phone"
                   type="tel"
                   required
-                  className="appearance-none rounded-lg relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                   placeholder="Enter your phone number"
-                 
                 />
               </div>
             </div>
@@ -56,17 +50,13 @@ const Register = () => {
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  
-                </div>
                 <input
                   id="email"
                   name="email"
                   type="email"
                   required
-                  className="appearance-none rounded-lg relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                   placeholder="Enter your email"
-                  
                 />
               </div>
             </div>
@@ -76,23 +66,20 @@ const Register = () => {
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  
-                </div>
                 <input
                   id="password"
                   name="password"
-                  
+                  type={showPassword ? "text" : "password"}
                   required
-                  className="appearance-none rounded-lg relative block w-full pl-10 pr-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-lg relative block w-full px-3 pr-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                   placeholder="Create a password"
-                  
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                 
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm text-gray-600"
+                  onClick={() => setShowPassword (! showPassword)}
                 >
+                  { showPassword ? "Hide" : "Show"}
                 </button>
               </div>
             </div>
@@ -102,19 +89,15 @@ const Register = () => {
                 Role
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  
-                </div>
                 <select
                   id="role"
                   name="role"
                   required
-                  className="appearance-none rounded-lg relative block w-full pl-10 pr-3 py-3 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
-                  
+                  className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                 >
-                  <option value="user">User</option>
+                  <option value="waiter">Waiter</option>
                   <option value="admin">Admin</option>
-                  <option value="moderator">Moderator</option>
+                  <option value="cashier">Cashier</option>
                 </select>
               </div>
             </div>
@@ -123,7 +106,6 @@ const Register = () => {
           <div>
             <button
               type="button"
-              
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150 ease-in-out"
             >
               Create Account
@@ -135,7 +117,7 @@ const Register = () => {
               Already have an account?{' '}
               <button
                 type="button"
-               
+                onClick={onSwitchToLogin}
                 className="font-medium text-purple-600 hover:text-purple-500"
               >
                 Sign in
@@ -145,9 +127,6 @@ const Register = () => {
         </div>
       </div>
     </div>
-
-
-</>
   )
 }
 

@@ -1,18 +1,23 @@
-import React from 'react'
-
-import Register from '../components/auth/register/Register';
+import React, {useState} from 'react'
 import Login from '../components/auth/login/Login';
+import Register from '../components/auth/register/Register';
 
 const Auth = () => {
-  return (
-   <> 
-   <Register/>
-   <Login/>
-   
-   
-  
-  </>
-  );
-};
+  const [currentView, setCurrentView] = useState('login') // Start with login view
 
-export default Auth;
+  const switchToLogin = () => setCurrentView('login')
+  const switchToRegister = () => setCurrentView('register')
+
+  return (
+    <>
+      {currentView === 'login' && (
+        <Login onSwitchToRegister={switchToRegister} />
+      )}
+      {currentView === 'register' && (
+        <Register onSwitchToLogin={switchToLogin} />
+      )}
+    </>
+  )
+}
+
+export default Auth
