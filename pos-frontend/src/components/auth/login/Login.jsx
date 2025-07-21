@@ -1,7 +1,33 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 const Login = ({ onSwitchToRegister }) => {
   const [showPassword, setShowPassword] = useState(false)
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    rememberMe: false,
+  })
+  const [error, setError] = useState('')
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (!formData.email || !formData.password) {
+      setError('Please enter both email and password.')
+      return
+    }
+    setError('')
+    // Example: console.log(formData)
+    // TODO: Send formData to backend
+    alert('Signed in!')
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
@@ -10,35 +36,33 @@ const Login = ({ onSwitchToRegister }) => {
           <h2 className="mt-6 text-3xl font-bold text-gray-900">Welcome Back</h2>
           <p className="mt-2 text-sm text-gray-600">Sign in to your account</p>
         </div>
-        
-        <div className="mt-8 space-y-6">
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="login-email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email Address
-              </label>
+              <label htmlFor="login-email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
               <div className="relative">
                 <input
                   id="login-email"
                   name="email"
                   type="email"
                   required
+                  value={formData.email}
+                  onChange={handleChange}
                   className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Enter your email"
                 />
               </div>
             </div>
-            
             <div>
-              <label htmlFor="login-password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
+              <label htmlFor="login-password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
               <div className="relative">
                 <input
                   id="login-password"
                   name="password"
                   type={showPassword ? "text" : "password"}
                   required
+                  value={formData.password}
+                  onChange={handleChange}
                   className="appearance-none rounded-lg relative block w-full px-3 pr-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Enter your password"
                 />
@@ -52,35 +76,31 @@ const Login = ({ onSwitchToRegister }) => {
               </div>
             </div>
           </div>
-
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
                 id="remember-me"
-                name="remember-me"
+                name="rememberMe"
                 type="checkbox"
+                checked={formData.rememberMe}
+                onChange={handleChange}
                 className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                Remember me
-              </label>
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">Remember me</label>
             </div>
             <div className="text-sm">
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Forgot password?
-              </a>
+              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>
             </div>
           </div>
-
+          {error && <div className="text-red-500 text-sm text-center">{error}</div>}
           <div>
             <button
-              type="button"
+              type="submit"
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
             >
               Sign In
             </button>
           </div>
-
           <div className="text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
@@ -93,7 +113,7 @@ const Login = ({ onSwitchToRegister }) => {
               </button>
             </p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   )
