@@ -24,7 +24,7 @@ const Login = ({ onSwitchToRegister }) => {
       return
     }
     setError('')
-    // Example: console.log(formData)
+    console.log(formData)
     // TODO: Send formData to backend
     alert('Signed in!')
   }

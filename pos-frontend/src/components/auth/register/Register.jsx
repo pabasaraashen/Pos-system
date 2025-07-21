@@ -24,7 +24,7 @@ const Register = ({ onSwitchToLogin }) => {
       return
     }
     setError('')
-    // Example: console.log(formData)
+     console.log(formData)
     // TODO: Send formData to backend
     alert('Account created!')
   }
