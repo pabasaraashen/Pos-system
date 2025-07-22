@@ -3,9 +3,11 @@ import { useMutation } from '@tanstack/react-query'// Import React Query's useMu
 import { login } from '../../../https/index'// Import the login API function
 import { useDispatch } from 'react-redux'; // Assuming you have a Redux store setup
 import { setUser } from '../../../redux/userSlice'; // Import the action to set user data in Redux store
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 
 // Login component for user authentication
 const Login = ({ onSwitchToRegister }) => {
+  const navigate = useNavigate(); // Use navigate for redirection
 
   const dispatch = useDispatch(); // Assuming you have a Redux store setup
 
@@ -52,6 +54,7 @@ const Login = ({ onSwitchToRegister }) => {
         console.log(data); // You can handle login success here (e.g., redirect, store token)
         const {_id, name, email, phone, role} = data.data; // Destructure user data
         dispatch(setUser({_id, name, email, phone, role})); // Dispatch user data to Redux store
+        navigate('/'); // Redirect to home page after successful login
     },
     // On error (network or server error)
     onError: (error) => {
