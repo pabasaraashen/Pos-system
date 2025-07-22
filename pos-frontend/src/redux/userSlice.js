@@ -21,7 +21,10 @@ const userSlice = createSlice({
             state.phone = phone;
             state.role = role;
             state.isAuth = true;
+            // Save to localStorage
+            localStorage.setItem('user', JSON.stringify(state));
         },
+
         clearUser: (state) => {
             state._id = "";
             state.name = "";
@@ -29,6 +32,9 @@ const userSlice = createSlice({
             state.phone = "";
             state.role = "";
             state.isAuth = false;
+            // Remove from localStorage
+            localStorage.removeItem('user');
+
         }
     }
 })
