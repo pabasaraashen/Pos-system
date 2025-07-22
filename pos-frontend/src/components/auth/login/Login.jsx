@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { use } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { login } from '../../../https/index'
 
@@ -21,10 +20,13 @@ const Login = ({ onSwitchToRegister }) => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    setError('');
+    if (!formData.email || !formData.password) {
+      setError('Please enter both email and password.');
+      return;
+    }
     loginMutation.mutate(formData);
-
-    
   }
 
   const loginMutation = useMutation({
@@ -34,9 +36,17 @@ const Login = ({ onSwitchToRegister }) => {
         console.log(data);
     },
     onError: (error) => {
+      // AxiosError: error.message, error.response, error.code, etc.
+      if (error.code === 'ERR_NETWORK') {
+        setError('Network error: Unable to connect to the server. Please check if the backend is running.');
+      } else if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('An unexpected error occurred.');
+      }
       console.log(error);
     }
-    })
+  })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">

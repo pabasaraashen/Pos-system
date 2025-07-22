@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const Register = ({ onSwitchToLogin }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -16,17 +17,20 @@ const Register = ({ onSwitchToLogin }) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Add validation or API call here
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!formData.name || !formData.phone || !formData.email || !formData.password || !formData.role) {
-      setError('Please fill in all fields.')
-      return
+      setError('Please fill in all fields.');
+      return;
     }
-    setError('')
-     console.log(formData)
-    // TODO: Send formData to backend
-    alert('Account created!')
+    setError('');
+    try {
+      const res = await axios.post('http://localhost:8000/api/user/register', formData);
+      alert('Account created!');
+      // Optionally, switch to login page here: onSwitchToLogin();
+    } catch (err) {
+      setError(err.response?.data?.message || 'Registration failed');
+    }
   }
 
   return (
