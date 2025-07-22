@@ -1,12 +1,14 @@
-// Import React and hooks
-import React, { useState } from 'react'
-// Import React Query's useMutation for handling async login
-import { useMutation } from '@tanstack/react-query'
-// Import the login API function
-import { login } from '../../../https/index'
+import React, { useState } from 'react'// Import React and hooks
+import { useMutation } from '@tanstack/react-query'// Import React Query's useMutation for handling async login
+import { login } from '../../../https/index'// Import the login API function
+import { useDispatch } from 'react-redux'; // Assuming you have a Redux store setup
+import { setUser } from '../../../redux/userSlice'; // Import the action to set user data in Redux store
 
 // Login component for user authentication
 const Login = ({ onSwitchToRegister }) => {
+
+  const dispatch = useDispatch(); // Assuming you have a Redux store setup
+
   // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false)
   // State to store form input values
@@ -48,6 +50,8 @@ const Login = ({ onSwitchToRegister }) => {
     onSuccess: (res) => {
         const { data } = res;
         console.log(data); // You can handle login success here (e.g., redirect, store token)
+        const {_id, name, email, phone, role} = data.data; // Destructure user data
+        dispatch(setUser({_id, name, email, phone, role})); // Dispatch user data to Redux store
     },
     // On error (network or server error)
     onError: (error) => {
@@ -56,6 +60,13 @@ const Login = ({ onSwitchToRegister }) => {
         setError('Network error: Unable to connect to the server. Please check if the backend is running.');
       } else if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message);
+        // Show alert for invalid login
+        if (
+          error.response.status === 401 ||
+          /invalid|unauthorized|wrong/i.test(error.response.data.message)
+        ) {
+          alert('Invalid login');
+        }
       } else {
         setError('An unexpected error occurred.');
       }
