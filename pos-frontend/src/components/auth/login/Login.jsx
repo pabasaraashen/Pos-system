@@ -1,4 +1,5 @@
 import React, { useState } from 'react'// Import React and hooks
+import { useSnackbar } from 'notistack';
 import { useMutation } from '@tanstack/react-query'// Import React Query's useMutation for handling async login
 import { login } from '../../../https/index'// Import the login API function
 import { useDispatch } from 'react-redux'; // Assuming you have a Redux store setup
@@ -7,6 +8,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate for redire
 
 // Login component for user authentication
 const Login = ({ onSwitchToRegister }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate(); // Use navigate for redirection
 
   const dispatch = useDispatch(); // Assuming you have a Redux store setup
@@ -54,24 +56,22 @@ const Login = ({ onSwitchToRegister }) => {
         console.log(data); // You can handle login success here (e.g., redirect, store token)
         const {_id, name, email, phone, role} = data.data; // Destructure user data
         dispatch(setUser({_id, name, email, phone, role})); // Dispatch user data to Redux store
+        enqueueSnackbar('Login successful!', { variant: 'success' });
         navigate('/'); // Redirect to home page after successful login
     },
     // On error (network or server error)
     onError: (error) => {
       // AxiosError: error.message, error.response, error.code, etc.
       if (error.code === 'ERR_NETWORK') {
-        setError('Network error: Unable to connect to the server. Please check if the backend is running.');
+        const msg = 'Network error: Unable to connect to the server. Please check if the backend is running.';
+        setError(msg);
+        enqueueSnackbar(msg, { variant: 'error' });
       } else if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message);
-        // Show alert for invalid login
-        if (
-          error.response.status === 401 ||
-          /invalid|unauthorized|wrong/i.test(error.response.data.message)
-        ) {
-          alert('Invalid login');
-        }
+        enqueueSnackbar(error.response.data.message, { variant: 'error' });
       } else {
         setError('An unexpected error occurred.');
+        enqueueSnackbar('An unexpected error occurred.', { variant: 'error' });
       }
       console.log(error);
     }

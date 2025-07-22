@@ -1,11 +1,15 @@
 // Import React and useState hook
 import React, { useState } from 'react'
+import { useSnackbar } from 'notistack';
 // Import axios for HTTP requests
+
+import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 
 // Register component for user sign up
 const Register = ({ onSwitchToLogin }) => {
+  const { enqueueSnackbar } = useSnackbar();
   // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false)
   // State to store form input values
@@ -25,24 +29,40 @@ const Register = ({ onSwitchToLogin }) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+
+  // React Query mutation for register API call
+  const registerMutation = useMutation({
+    mutationFn: (reqData) => axios.post('http://localhost:8000/api/user/register', reqData),
+    onSuccess: (res) => {
+      enqueueSnackbar('Account created!', { variant: 'success' });
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        password: '',
+        role: '',
+      });
+      setTimeout(() => {
+        onSwitchToLogin();
+      }, 1500);
+    },
+    onError: (err) => {
+      const msg = err.response?.data?.message || 'Registration failed';
+      setError(msg);
+      enqueueSnackbar(msg, { variant: 'error' });
+    }
+  });
+
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submit
-    // Validate required fields
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!formData.name || !formData.phone || !formData.email || !formData.password || !formData.role) {
       setError('Please fill in all fields.');
       return;
     }
     setError('');
-    try {
-      // Send registration data to backend
-      const res = await axios.post('http://localhost:8000/api/user/register', formData);
-      alert('Account created!');
-      // Optionally, switch to login page here: onSwitchToLogin();
-    } catch (err) {
-      // Show error message from backend or generic error
-      setError(err.response?.data?.message || 'Registration failed');
-    }
+    console.log('Register form data:', formData);
+    registerMutation.mutate(formData);
   }
 
   // Render the registration form UI
