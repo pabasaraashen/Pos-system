@@ -1,8 +1,14 @@
+// Import React and useState hook
 import React, { useState } from 'react'
+// Import axios for HTTP requests
 import axios from 'axios'
 
+
+// Register component for user sign up
 const Register = ({ onSwitchToLogin }) => {
+  // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false)
+  // State to store form input values
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -10,29 +16,36 @@ const Register = ({ onSwitchToLogin }) => {
     password: '',
     role: 'waiter', // Default role
   })
+  // State to store error messages
   const [error, setError] = useState('')
 
+  // Handle input changes for all form fields
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submit
+    // Validate required fields
     if (!formData.name || !formData.phone || !formData.email || !formData.password || !formData.role) {
       setError('Please fill in all fields.');
       return;
     }
     setError('');
     try {
+      // Send registration data to backend
       const res = await axios.post('http://localhost:8000/api/user/register', formData);
       alert('Account created!');
       // Optionally, switch to login page here: onSwitchToLogin();
     } catch (err) {
+      // Show error message from backend or generic error
       setError(err.response?.data?.message || 'Registration failed');
     }
   }
 
+  // Render the registration form UI
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center px-4">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
@@ -42,6 +55,7 @@ const Register = ({ onSwitchToLogin }) => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
+            {/* Name field */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
               <div className="relative">
@@ -57,6 +71,7 @@ const Register = ({ onSwitchToLogin }) => {
                 />
               </div>
             </div>
+            {/* Phone field */}
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
               <div className="relative">
@@ -72,6 +87,7 @@ const Register = ({ onSwitchToLogin }) => {
                 />
               </div>
             </div>
+            {/* Email field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
               <div className="relative">
@@ -87,6 +103,7 @@ const Register = ({ onSwitchToLogin }) => {
                 />
               </div>
             </div>
+            {/* Password field */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
               <div className="relative">
@@ -109,6 +126,7 @@ const Register = ({ onSwitchToLogin }) => {
                 </button>
               </div>
             </div>
+            {/* Role field */}
             <div>
               <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">Role</label>
               <div className="relative">
@@ -127,7 +145,9 @@ const Register = ({ onSwitchToLogin }) => {
               </div>
             </div>
           </div>
+          {/* Error message */}
           {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+          {/* Submit button */}
           <div>
             <button
               type="submit"
@@ -136,6 +156,7 @@ const Register = ({ onSwitchToLogin }) => {
               Create Account
             </button>
           </div>
+          {/* Switch to login button */}
           <div className="text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{' '}

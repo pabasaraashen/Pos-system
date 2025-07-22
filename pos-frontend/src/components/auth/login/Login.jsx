@@ -1,16 +1,24 @@
+// Import React and hooks
 import React, { useState } from 'react'
+// Import React Query's useMutation for handling async login
 import { useMutation } from '@tanstack/react-query'
+// Import the login API function
 import { login } from '../../../https/index'
 
+// Login component for user authentication
 const Login = ({ onSwitchToRegister }) => {
+  // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false)
+  // State to store form input values
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     rememberMe: false,
   })
+  // State to store error messages
   const [error, setError] = useState('')
 
+  // Handle input changes for all form fields
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
     setFormData((prev) => ({
@@ -19,22 +27,29 @@ const Login = ({ onSwitchToRegister }) => {
     }))
   }
 
+  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setError('');
+    e.preventDefault(); // Prevent default form submit
+    setError(''); // Clear previous errors
+    // Validate required fields
     if (!formData.email || !formData.password) {
       setError('Please enter both email and password.');
       return;
     }
+    // Trigger the login mutation
     loginMutation.mutate(formData);
   }
 
+  // React Query mutation for login API call
   const loginMutation = useMutation({
+    // Function to call the login API
     mutationFn: (reqData) => login(reqData),
+    // On successful login
     onSuccess: (res) => {
         const { data } = res;
-        console.log(data);
+        console.log(data); // You can handle login success here (e.g., redirect, store token)
     },
+    // On error (network or server error)
     onError: (error) => {
       // AxiosError: error.message, error.response, error.code, etc.
       if (error.code === 'ERR_NETWORK') {
