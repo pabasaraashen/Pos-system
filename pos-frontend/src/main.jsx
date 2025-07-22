@@ -19,7 +19,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <SnackbarProvider autoHideDuration={3000}>
-        <QueryClientProvider client={ QueryClient}>
+        <QueryClientProvider client={queryClient}>
           <App />
         </QueryClientProvider>
       </SnackbarProvider>

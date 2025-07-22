@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { use } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import { login } from '../../../https/index'
 
 const Login = ({ onSwitchToRegister }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -19,15 +22,21 @@ const Login = ({ onSwitchToRegister }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!formData.email || !formData.password) {
-      setError('Please enter both email and password.')
-      return
-    }
-    setError('')
-    console.log(formData)
-    // TODO: Send formData to backend
-    alert('Signed in!')
+    loginMutation.mutate(formData);
+
+    
   }
+
+  const loginMutation = useMutation({
+    mutationFn: (reqData) => login(reqData),
+    onSuccess: (res) => {
+        const { data } = res;
+        console.log(data);
+    },
+    onError: (error) => {
+      console.log(error);
+    }
+    })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
