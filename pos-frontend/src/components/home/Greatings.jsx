@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BiDish } from "react-icons/bi";
 import Modal from '../shared/Modal';
 import { useActionData, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCustomer } from '../../redux/customerSlice';
 
 const Greatings = () => {
+  const userData = useSelector((state) => state.user) || {}; // Assuming you have a user slice in Redux
   const navigate = useNavigate();
   const [dateTime, setDateTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,7 +43,7 @@ const Greatings = () => {
   return (
     <div className='flex justify-between items-center px-8 mt-5'>
       <div>
-        <h1 className='text-[#000000] text-2xl font-bold'>Good Morning, Pabasara</h1>
+        <h1 className='text-[#000000] text-2xl font-bold'>Good Morning, {userData.name || "Name"}</h1>
       </div>
 
       <div className="ml-[350px]">

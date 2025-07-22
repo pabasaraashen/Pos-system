@@ -1,14 +1,36 @@
 import React from 'react';
 import { FaSearch, FaUserCircle, FaBell, FaHome } from 'react-icons/fa';
-import { IoReorderFourSharp } from "react-icons/io5";
+import { IoLogOut, IoReorderFourSharp } from "react-icons/io5";
 import { MdTableBar } from 'react-icons/md';
 import { CiCircleMore } from 'react-icons/ci';
 import { useNavigate, useLocation } from 'react-router-dom'; // 🔥 Import useLocation
 import logo from "../../assets/images/logo.jpg";
 import { useSelector } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { logout } from '../../https';
+import { useDispatch } from 'react-redux';
+import { clearUser } from '../../redux/userSlice';
 
 const Header = () => {
   const userData = useSelector((state) => state.user) || {}; // Assuming you have a user slice in Redux
+  const dispatch = useDispatch();
+  
+  const logoutMutation = useMutation({
+    mutationFn: () => logout(),
+    onSuccess: (data) => {
+      console.log(data);
+      dispatch(clearUser());
+      navigate("/auth");
+    },
+    onError: (error) => {
+      console.error(error);
+    }
+  })
+
+  const handleLogout = () => {
+    logoutMutation.mutate();
+  }
+
   const navigate = useNavigate();
   const location = useLocation(); // 🔥 Use location hook
   const currentPath = location.pathname;
@@ -75,6 +97,7 @@ const Header = () => {
             <h1 className="text-sm text-[#f5f5f5]">{userData.name || "Name"}</h1>
             <p className="text-xs text-[#7c7777]">{userData.role || "Role"}</p>
           </div>
+          <IoLogOut  onClick={handleLogout} className="text-[#f5f5f5] ml-2" size={40} />
         </div>
       </div>
     </header>
