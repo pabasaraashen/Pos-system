@@ -5,8 +5,10 @@ import { MdTableBar } from 'react-icons/md';
 import { CiCircleMore } from 'react-icons/ci';
 import { useNavigate, useLocation } from 'react-router-dom'; // 🔥 Import useLocation
 import logo from "../../assets/images/logo.jpg";
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+  const userData = useSelector((state) => state.user) || {}; // Assuming you have a user slice in Redux
   const navigate = useNavigate();
   const location = useLocation(); // 🔥 Use location hook
   const currentPath = location.pathname;
@@ -70,8 +72,8 @@ const Header = () => {
         <div className="flex items-center gap-2 cursor-pointer">
           <FaUserCircle className="text-[#f5f5f5] text-3xl" />
           <div className="flex flex-col items-start">
-            <h1 className="text-sm text-[#f5f5f5]">Pabasara</h1>
-            <p className="text-xs text-[#7c7777]">Admin</p>
+            <h1 className="text-sm text-[#f5f5f5]">{userData.name || "Name"}</h1>
+            <p className="text-xs text-[#7c7777]">{userData.role || "Role"}</p>
           </div>
         </div>
       </div>

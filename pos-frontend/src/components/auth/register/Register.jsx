@@ -14,7 +14,7 @@ const Register = ({ onSwitchToLogin }) => {
     phone: '',
     email: '',
     password: '',
-    role: 'waiter', // Default role
+    role: '', // Default role
   })
   // State to store error messages
   const [error, setError] = useState('')
