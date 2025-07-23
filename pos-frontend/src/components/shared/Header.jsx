@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaSearch, FaUserCircle, FaBell, FaHome } from 'react-icons/fa';
 import { IoLogOut, IoReorderFourSharp } from "react-icons/io5";
-import { MdTableBar } from 'react-icons/md';
+import { MdDashboard, MdTableBar } from 'react-icons/md';
 import { CiCircleMore } from 'react-icons/ci';
 import { useNavigate, useLocation } from 'react-router-dom'; // 🔥 Import useLocation
 import logo from "../../assets/images/logo.jpg";
@@ -88,6 +88,11 @@ const Header = () => {
 
       {/* Profile Section */}
       <div className="flex items-center gap-4 min-w-fit">
+        {userData.role === "admin" && (
+          <div onClick={() => navigate("/dashboard")} className="bg-[#1f1f1f] rounded-[15px] p-2 cursor-pointer">
+          <MdDashboard className="text-[#f5f5f5] text-xl" />
+        </div>
+        )}
         <div className="bg-[#1f1f1f] rounded-[15px] p-2 cursor-pointer">
           <FaBell className="text-[#f5f5f5] text-xl" />
         </div>
