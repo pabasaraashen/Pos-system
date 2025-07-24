@@ -41,20 +41,21 @@ const Greatings = () => {
     ).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}`;
 
   return (
-    <div className='flex justify-between items-center px-8 mt-5'>
-      <div>
-        <h1 className='text-[#000000] text-2xl font-bold'>Good Morning, {userData.name || "Name"}</h1>
-      </div>
+    <div className='flex justify-between items-center px-5 mt-5'>
+      <h1 className='text-[#000000] text-3xl font-bold'>Good Morning, {userData.name || "Name"}</h1>
 
-      <div className="ml-[350px]">
+      <div className="flex items-center gap-6">
         <button
           onClick={openModal}
-          className="flex items-center gap-2 bg-[#f6b100] hover:bg-[#dee26c] text-black font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300"
+          className="flex items-center gap-2 bg-[#f6b100] hover:bg-[#dee26c] text-black font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300 mr-4"
         >
           <BiDish size={24} />
           <span>Create Order</span>
         </button>
-
+        <div>
+          <h1 className="text-[#000000] text-3xl font-bold w-[130px]">{formatTime(dateTime)}</h1>
+          <p className="text-[#252525] text-sm">{formatDate(dateTime)}</p>
+        </div>
         {isModalOpen && (
           <Modal isOpen={isModalOpen} onClose={closeModal} title='Create Order'>
             <label className='block text-white mb-2 text-sm font-medium'>Customer Name</label>
@@ -71,11 +72,6 @@ const Greatings = () => {
             </button>
           </Modal>
         )}
-      </div>
-
-      <div>
-        <h1 className="text-[#000000] text-3xl font-bold w-[130px]">{formatTime(dateTime)}</h1>
-        <p className="text-[#252525] text-sm">{formatDate(dateTime)}</p>
       </div>
     </div>
   );

@@ -4,12 +4,12 @@ import { MostPopuler } from '../../constants/index.js';
 const Populer = () => {
   return (
     <div className='mt-6  pr-10'>
-        <div className='bg-gradient-to-br from-white via-[#e0e7ff] to-[#c7d2fe] w-full rounded-lg'>
+        <div className='bg-gradient-to-br from-white via-[#e0e7ff] to-[#c7d2fe] w-full rounded-lg hover:shadow-2xl'>
            <div className="flex justify-between items-center text-[#025cca] p-4">
                <h1 className="text-lg font-semibold">Most Popular</h1>
                <a href="#" className="text-[#025cca] text-sm font-semibold">View all</a>
            </div> 
-           <div className="h-[680px] overflow-y-scroll">
+           <div className="h-[680px] overflow-y-scroll scrollbar-hide pt-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {
                 MostPopuler.map((dish) => {
           return (
