@@ -39,12 +39,12 @@ const Header = () => {
     currentPath === path ? "bg-[#4e4d4d]" : "hover:bg-[#4e4d4d]";
 
   return (
-    <header className="flex items-center justify-between px-6 py-4 bg-[#1a1a1a] gap-4 flex-wrap">
+    <header className="flex items-center justify-between px-6 py-5 bg-white gap-4 flex-wrap border border-[#6366f1] shadow-[0_4px_16px_0_rgba(99,102,241,0.10)] transition-colors duration-300 hover:bg-[#e0e7ff]">
       
       {/* Logo */}
       <div className="flex items-center gap-2 min-w-fit">
         <img src={logo} className="h-8 w-8" alt="res logo" />
-        <h1 className="text-lg font-extralight text-[#f5f5f5] whitespace-nowrap">
+        <h1 className="text-2xl font-extralight text-[#000000] whitespace-nowrap drop-shadow-md">
           Sri Lankan Cuisine
         </h1>
       </div>
@@ -53,56 +53,56 @@ const Header = () => {
       <div className="flex items-center gap-14 min-w-fit">
         <button
           onClick={() => navigate("/")}
-          className={`flex items-center gap-2 text-[#e6dfdf] px-4 py-2 rounded-[20px] text-md ${isActive("/")}`}>
+          className={`flex items-center gap-2 text-[#000000] px-4 py-2 rounded-[20px] text-md bg-[#e0e7ff] hover:bg-[#6366f1] hover:text-white transition-all duration-200 ${isActive("/")}`}> 
           <FaHome size={14} />
           Home
         </button>
         <button
           onClick={() => navigate("/orders")}
-          className={`flex items-center gap-2 text-[#e6dfdf] px-4 py-2 rounded-[20px] text-md ${isActive("/orders")}`}>
+          className={`flex items-center gap-2 text-[#000000] px-4 py-2 rounded-[20px] text-md bg-[#e0e7ff] hover:bg-[#6366f1] hover:text-white transition-all duration-200 ${isActive("/orders")}`}> 
           <IoReorderFourSharp size={14} />
           Orders
         </button>
         <button
           onClick={() => navigate("/tables")}
-          className={`flex items-center gap-2 text-[#e6dfdf] px-4 py-2 rounded-[20px] text-md ${isActive("/tables")}`}>
+          className={`flex items-center gap-2 text-[#000000] px-4 py-2 rounded-[20px] text-md bg-[#e0e7ff] hover:bg-[#6366f1] hover:text-white transition-all duration-200 ${isActive("/tables")}`}> 
           <MdTableBar size={14} />
           Tables
         </button>
         <button
-          className="flex items-center gap-2 text-[#e6dfdf] hover:bg-[#4e4d4d] px-4 py-2 rounded-[20px] text-md">
+          className="flex items-center gap-2 text-[#000000] bg-[#e0e7ff] hover:bg-[#6366f1] hover:text-white px-4 py-2 rounded-[20px] text-md transition-all duration-200">
           <CiCircleMore size={14} />
           More
         </button>
       </div>
 
       {/* Search Bar */}
-      <div className="flex items-center gap-3 bg-[#1f1f1f] rounded-[20px] px-4 py-2 w-[300px]">
-        <FaSearch className="text-[#f5f5f5]" />
+      <div className="flex items-center gap-3 bg-white border border-[#e0e7ff] rounded-[20px] px-4 py-2 w-[300px] shadow-sm focus-within:border-[#2563eb]">
+        <FaSearch className="text-[#6366f1]" />
         <input
           type="text"
           placeholder="Search"
-          className="bg-transparent outline-none text-[#f5f5f5] w-full"
+          className="bg-transparent outline-none text-[#1e293b] w-full placeholder-[#64748b] focus:ring-2 focus:ring-[#2563eb] rounded-md px-2"
         />
       </div>
 
       {/* Profile Section */}
       <div className="flex items-center gap-4 min-w-fit">
         {userData.role === "admin" && (
-          <div onClick={() => navigate("/dashboard")} className="bg-[#1f1f1f] rounded-[15px] p-2 cursor-pointer">
-          <MdDashboard className="text-[#f5f5f5] text-xl" />
+          <div onClick={() => navigate("/dashboard")} className="bg-[#e0e7ff] rounded-[15px] p-2 cursor-pointer">
+          <MdDashboard className="text-[#000000] text-xl" />
         </div>
         )}
-        <div className="bg-[#1f1f1f] rounded-[15px] p-2 cursor-pointer">
-          <FaBell className="text-[#f5f5f5] text-xl" />
+        <div className="bg-[#e0e7ff] rounded-[15px] p-2 cursor-pointer">
+          <FaBell className="text-[#000000] text-xl" />
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
-          <FaUserCircle className="text-[#f5f5f5] text-3xl" />
+          <FaUserCircle className="text-[#000000] text-3xl" />
           <div className="flex flex-col items-start">
-            <h1 className="text-sm text-[#f5f5f5]">{userData.name || "Name"}</h1>
-            <p className="text-xs text-[#7c7777]">{userData.role || "Role"}</p>
+            <h1 className="text-sm text-[#000000]">{userData.name || "Name"}</h1>
+            <p className="text-xs text-[#515151]">{userData.role || "Role"}</p>
           </div>
-          <IoLogOut  onClick={handleLogout} className="text-[#f5f5f5] ml-2" size={40} />
+          <IoLogOut  onClick={handleLogout} className="text-[#000000] ml-2" size={40} />
         </div>
       </div>
     </header>
