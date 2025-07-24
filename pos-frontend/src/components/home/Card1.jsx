@@ -2,16 +2,16 @@ import React from 'react'
 
 const Card1 = ({title, icon, number, footerNum}) => {
   return (
-    <div className='bg-[#000000] py-5 px-5 rounded-lg w-[50%]'>
-        <div className='flex items-start justify-between'>
-           <h1 className='text-[#e6dfdf] text-lg font-bold'>{title}</h1>
-           <button className={`${title === "Total Earnings" ? "bg-[#02ca3a]" : "bg-[#0019f6]"} p-3 rounded-lg text-[#f5f5f5] text-2xl`}>{icon}</button>
-        </div>
-        <div>
-           <h1 className='text-[#f5f5f5] text-4xl font-bold mt-5'>{
-              title === "Total Earnings" ? `Rs.${number}` : number}</h1>
-            <h1 className='text-[#f5f5f5] text-lg mt-2'><span className='text-[#02ca3a]'>{footerNum}%</span> than yesterday</h1>  
-        </div>
+    <div className="bg-gradient-to-br from-white via-[#e0e7ff] to-[#c7d2fe] py-5 px-5 rounded-xl w-[50%] shadow-lg border border-[#c7d2fe] transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl">
+      <div className="flex items-start justify-between">
+        <h1 className="text-[#6366f1] text-lg font-bold">{title}</h1>
+        <button className={`p-3 rounded-lg text-2xl bg-gradient-to-r from-[#6366f1] to-[#22d3ee] text-white shadow-md transition-all duration-300 hover:scale-110`}>{icon}</button>
+      </div>
+      <div>
+        <h1 className="text-[#1e293b] text-4xl font-bold mt-5">{
+          title === "Total Earnings" ? `Rs.${number}` : number}</h1>
+        <h1 className="text-[#64748b] text-lg mt-2"><span className="text-[#10b981] font-bold">{footerNum}%</span> than yesterday</h1>
+      </div>
     </div>
   )
 }
