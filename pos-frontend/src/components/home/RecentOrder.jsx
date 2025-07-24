@@ -6,9 +6,9 @@ const RecentOrder = () => {
   return (
     <div className="px-8 mt-6">
       <div className="bg-gradient-to-br from-white via-[#e0e7ff] to-[#c7d2fe] w-full h-[450px] rounded-2xl p-4 shadow-lg border border-[#c7d2fe] transition-all duration-300 hover:shadow-2xl">
-        <div className="flex justify-between items-center text-[#6366f1] p-4">
+        <div className="flex justify-between items-center text-[#025cca] p-4">
           <h1 className="text-lg font-bold">Recent Orders</h1>
-          <a href="#" className="text-[#22d3ee] text-sm font-semibold hover:underline">View all</a>
+          <a href="#" className="text-[#025cca] text-sm font-semibold hover:underline">View all</a>
         </div>
 
         {/*search bar*/}
