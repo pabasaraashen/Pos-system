@@ -36,9 +36,11 @@ const Tables = () => {
       </div>
       <div className='flex flex-wrap gap-6 px-8 py-6 overflow-y-auto h-[700px] bg-white/60 rounded-2xl shadow-[0_8px_32px_0_rgba(99,102,241,0.10)] border border-[#e0e7ff] ml-24 mr-8'>
         {
-          tables.map((table) => (
-            <TableCard key={table.id} id={table.id} name={table.name} status={table.status} initials={table.initial} />
-          ))
+          tables
+            .filter(table => status === 'all' ? true : table.status === 'Booked')
+            .map((table) => (
+              <TableCard key={table.id} id={table.id} name={table.name} status={table.status} initials={table.initial} />
+            ))
         }
       </div>
     </section>
