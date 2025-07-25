@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { MdTableBar, MdCategory } from "react-icons/md";
+import {  MdCategory } from "react-icons/md";
 import { BiSolidDish } from "react-icons/bi";
 import Metrics from '../components/dashboard/Metrics';
 import RecentOrders from '../components/dashboard/RecentOrders';
 
 const buttons = [
-  { label: "Add Table", icon: <MdTableBar />, action: "table" },
   { label: "Add Category", icon: <MdCategory />, action: "category" },
   { label: "Add Dishes", icon: <BiSolidDish />, action: "dishes" },
 ];

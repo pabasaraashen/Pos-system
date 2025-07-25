@@ -1,5 +1,4 @@
 import React, { useState }  from 'react';
-
 import BackButton from '../components/shared/BackButton';
 import TableCard from '../components/tables/TableCard';
 import { tables } from '../constants';
@@ -12,46 +11,36 @@ const Tables = () => {
     const [status, setStatus] = useState("all");
 
   return (
-    <section className="bg-[#1f1f1f]  h-[calc(100vh-5rem)] overflow-hidden">
-      <div className="flex items-center justify-between px-10 py-4">
+    <section className="min-h-screen bg-[#e0e7ff]  h-[calc(100vh-5rem)] overflow-hidden flex flex-col">
+      <div className="flex items-center justify-between px-12 py-8">
         <div className="flex items-center gap-4">
           <BackButton />
-          <h1 className="text-[#f5f5f5] text-2xl font-bold tracking-wider">
+          <h1 className="text-[#181a94] text-3xl font-bold tracking-wider drop-shadow-md">
             Tables
           </h1>
         </div>
-        
-        <div className="flex items-center justify-around gap-4">
+        <div className="flex items-center gap-4">
           <button
-            onClick={() => setStatus("all")}
-            className={`text-[#ababab] text-lg ${
-              status === "all" && "bg-[#383838] rounded-lg px-5 py-2"
-            }  rounded-lg px-5 py-2 font-semibold`}
+            onClick={() => setStatus('all')}
+            className={`text-lg font-semibold px-6 py-2 rounded-xl border border-[#6366f1] shadow-sm transition-all duration-200 ${status === 'all' ? 'bg-[#181a94] text-white scale-105' : 'bg-white text-[#2563eb] hover:bg-[#e0e7ff] hover:text-[#6366f1]'}`}
           >
             All
           </button>
           <button
-            onClick={() => setStatus("booked")}
-            className={`text-[#ababab] text-lg ${
-              status === "booked" && "bg-[#383838] rounded-lg px-5 py-2"
-            }  rounded-lg px-5 py-2 font-semibold`}
+            onClick={() => setStatus('booked')}
+            className={`text-lg font-semibold px-6 py-2 rounded-xl border border-[#6366f1] shadow-sm transition-all duration-200 ${status === 'booked' ? 'bg-[#6366f1] text-white scale-105' : 'bg-white text-[#2563eb] hover:bg-[#e0e7ff] hover:text-[#6366f1]'}`}
           >
             Booked
           </button>
         </div>
-        </div>
-        <div className='flex flex-wrap gap-4 px-3 py-4 overflow-y-auto h-[700px]'>
-           {
-            tables.map((table) => {
-                return (
-                    <TableCard key= {table.id} name= {table.name} status= {table.status} initials= {table.initial} />
-                )
-            })
-           }
-        
-        </div>   
-        
-        
+      </div>
+      <div className='flex flex-wrap gap-6 px-8 py-6 overflow-y-auto h-[700px] bg-white/60 rounded-2xl shadow-[0_8px_32px_0_rgba(99,102,241,0.10)] border border-[#e0e7ff] ml-24 mr-8'>
+        {
+          tables.map((table) => (
+            <TableCard key={table.id} id={table.id} name={table.name} status={table.status} initials={table.initial} />
+          ))
+        }
+      </div>
     </section>
   )
 }
