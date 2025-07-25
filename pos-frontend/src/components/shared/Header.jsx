@@ -39,7 +39,7 @@ const Header = () => {
     currentPath === path ? "bg-[#4e4d4d]" : "hover:bg-[#4e4d4d]";
 
   return (
-    <header className="flex items-center justify-between px-6 py-5 bg-white gap-4 flex-wrap border border-[#6366f1] shadow-[0_4px_16px_0_rgba(99,102,241,0.10)] transition-colors duration-300 hover:bg-[#e0e7ff]">
+    <header className="flex items-center justify-between px-6 py-5 bg-white gap-4 flex-wrap  shadow-[0_4px_16px_0_rgba(99,102,241,0.10)] transition-colors duration-300 hover:bg-[#e0e7ff]">
       
       {/* Logo */}
       <div className="flex items-center gap-2 min-w-fit">

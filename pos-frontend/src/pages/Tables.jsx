@@ -11,7 +11,7 @@ const Tables = () => {
     const [status, setStatus] = useState("all");
 
   return (
-    <section className="min-h-screen bg-[#e0e7ff]  h-[calc(100vh-5rem)] overflow-hidden flex flex-col">
+    <section className="min-h-screen bg-[#e0e7ff] shadow-2xl h-[calc(100vh-5rem)] overflow-hidden flex flex-col">
       <div className="flex items-center justify-between px-12 py-8">
         <div className="flex items-center gap-4">
           <BackButton />
@@ -34,7 +34,7 @@ const Tables = () => {
           </button>
         </div>
       </div>
-      <div className='flex flex-wrap gap-6 px-8 py-6 overflow-y-auto h-[700px] bg-white/60 rounded-2xl shadow-[0_8px_32px_0_rgba(99,102,241,0.10)] border border-[#e0e7ff] ml-24 mr-8'>
+      <div className='flex flex-wrap gap-6 px-8 py-6 overflow-y-auto h-[700px] bg-gradient-to-br from-[#e0e7ff] via-[#e0e7ff] to-[#6366f1] rounded-2xl hover:shadow-3xl ml-24 mr-8 overflow-y-scroll scrollbar-hide pt-4' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {
           tables
             .filter(table => status === 'all' ? true : table.status === 'Booked')
