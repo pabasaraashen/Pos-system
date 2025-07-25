@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { MdTableBar, MdCategory } from "react-icons/md";
 import { BiSolidDish } from "react-icons/bi";
+import Metrics from '../components/dashboard/Metrics';
+import RecentOrders from '../components/dashboard/RecentOrders';
 
 const buttons = [
   { label: "Add Table", icon: <MdTableBar />, action: "table" },
@@ -8,10 +10,15 @@ const buttons = [
   { label: "Add Dishes", icon: <BiSolidDish />, action: "dishes" },
 ];
 
+const tabs = ["Metrics", "Orders", "Payment"];
+
 const Dashboard = () => {
+
+    const [activeTab, setActiveTab] = useState("Metrics");
+
   return (
     <div className='bg-[#1f1f1f] h-[calc(100vh-5rem)]'>
-        <div className='container mx-autoflex items-center justify-between py-14 px-6 md:px-4'>
+        <div className='container mx-auto flex items-center justify-between py-14 px-6 md:px-4'>
             <div className='flex items-center gap-3'>
                 {
                     buttons.map(({ label, icon, action }) => {
@@ -21,14 +28,26 @@ const Dashboard = () => {
                             {label}
                         </button>
                        )
-
                     })
-
                 }
             </div>
 
+            <div className='flex items-center gap-3'>
+              {
+                tabs.map((tab) => (
+                  <button
+                    key={tab}
+                    className={`text-white py-3 px-8 rounded-lg font-semibold text-md flex items-center gap-2 ${activeTab === tab ? 'bg-gray-700' : 'bg-black hover:bg-gray-700'}`}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab}
+                  </button>
+                ))
+              }
+            </div>
         </div>
-        
+        <Metrics/>
+        <RecentOrders/>
     </div>
   )
 }
