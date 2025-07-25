@@ -46,8 +46,8 @@ const Dashboard = () => {
               }
             </div>
         </div>
-        <Metrics/>
-        <RecentOrders/>
+        {activeTab === "Metrics" && <Metrics />}
+        {activeTab === "Orders" && <RecentOrders />}
     </div>
   )
 }
