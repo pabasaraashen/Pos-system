@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useSnackbar } from 'notistack';
 import BackButton from '../components/shared/BackButton';
 import MenuContainer from '../components/menu/MenuContainer';
 import { MdDelete } from "react-icons/md";
@@ -7,6 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../redux/cartSlice';
 
 const Menu = () => {
+  const { enqueueSnackbar } = useSnackbar();
+  const handlePlaceOrder = () => {
+    enqueueSnackbar('Order Placed!', { variant: 'success' });
+  };
   const customerData = useSelector(state => state.customer);
   const cartData = useSelector((state) => state.cart);
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -135,7 +140,7 @@ const Menu = () => {
           <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.{finalPrice.toFixed(2)}</h1>
         </div>
 
-        {/* payment method dropdown */}
+        {/* payment method */}
         <div className='flex items-center px-5 mt-4'>
           <select
             className='bg-[#1f1f1f] text-[#ababab] font-semibold px-4 py-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6366f1] transition'
@@ -149,7 +154,12 @@ const Menu = () => {
         {/* action buttons */}
         <div className='flex items-center gap-3 px-5 mt-4'>
           <button className='px-4 py-3 w-full rounded-lg bg-[#0f42ba] text-[#f5f5f5] font-semibold'>Receipt</button>
-          <button className='px-4 py-3 w-full rounded-lg bg-[#c6b112] text-[#f5f5f5] font-semibold'>Place Order</button>
+          <button
+            className='px-4 py-3 w-full rounded-lg bg-[#c6b112] text-[#f5f5f5] font-semibold'
+            onClick={handlePlaceOrder}
+          >
+            Place Order
+          </button>
         </div>
       </div>
     </section>
