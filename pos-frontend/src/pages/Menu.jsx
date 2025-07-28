@@ -135,10 +135,15 @@ const Menu = () => {
           <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.{finalPrice.toFixed(2)}</h1>
         </div>
 
-        {/* payment method buttons */}
-        <div className='flex items-center gap-3 px-5 mt-4'>
-          <button className='bg-[#1f1f1f] px-4 py-3 w-full rounded-lg text-[#ababab] font-semibold'>Cash</button>
-          <button className='bg-[#1f1f1f] px-4 py-3 w-full rounded-lg text-[#ababab] font-semibold'>Online</button>
+        {/* payment method dropdown */}
+        <div className='flex items-center px-5 mt-4'>
+          <select
+            className='bg-[#1f1f1f] text-[#ababab] font-semibold px-4 py-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6366f1] transition'
+            defaultValue="cash"
+          >
+            <option value="cash">Cash</option>
+            <option value="online">Online</option>
+          </select>
         </div>
 
         {/* action buttons */}

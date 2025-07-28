@@ -3,7 +3,7 @@ import { FaSearch, FaUserCircle, FaBell, FaHome } from 'react-icons/fa';
 import { IoLogOut, IoReorderFourSharp } from "react-icons/io5";
 import { MdDashboard, MdTableBar } from 'react-icons/md';
 import { CiCircleMore } from 'react-icons/ci';
-import { useNavigate, useLocation } from 'react-router-dom'; // 🔥 Import useLocation
+import { useNavigate, useLocation } from 'react-router-dom'; 
 import logo from "../../assets/images/logo.jpg";
 import { useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
@@ -102,7 +102,7 @@ const Header = () => {
             <h1 className="text-sm text-[#000000]">{userData.name || "Name"}</h1>
             <p className="text-xs text-[#515151]">{userData.role || "Role"}</p>
           </div>
-          <IoLogOut  onClick={handleLogout} className="text-[#000000] ml-2" size={40} />
+          <IoLogOut onClick={handleLogout} className="text-[#000000] ml-2" size={40} />
         </div>
       </div>
     </header>
