@@ -59,7 +59,7 @@ const Orders = () => {
             <div className='flex items-center justify-between px-8 py-4'>
                 <div className='flex items-center gap-4'>
                     <BackButton/>
-                    <h1 className='text-[#181a94] text-2xl font-bold'>Orders</h1>
+                    <h1 className='text-[#181a94] text-3xl font-bold'>Orders</h1>
                 </div>
                 <div className="flex items-center justify-around gap-4">
                     <button 

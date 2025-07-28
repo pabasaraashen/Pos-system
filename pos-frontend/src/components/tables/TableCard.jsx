@@ -25,7 +25,7 @@ const TableCard = ({ key, name, status: initialStatus, initials }) => {
     <div
       onClick={handleClick}
       key={key}
-      className="w-[300px] min-h-[180px] bg-[#b5b5b5] hover:bg-[#a0a0a0] rounded-lg mx-2 my-3 p-4 cursor-pointer flex flex-col justify-between shadow-lg border border-[#c7d2fe] transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl "
+      className="w-[300px] min-h-[180px] bg-[#b4bcd3] hover:bg-[#b1bad5] rounded-lg mx-2 my-3 p-4 cursor-pointer flex flex-col justify-between shadow-lg border border-[#c7d2fe] transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl "
     >
       <div className="flex items-center justify-between px-1">
         <p

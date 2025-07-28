@@ -64,7 +64,7 @@ const Ordercard = ({ order }) => {
   const statusDisplay = getStatusDisplay(order.orderStatus);
 
   return (
-    <div className="w-[550px] bg-[#626262] rounded-lg mb-4 p-4">
+    <div className="w-[550px] bg-[#b4bcd3] rounded-lg mb-4 p-4 shadow-lg border border-[#c7d2fe] transition-all duration-100 hover:scale-[1.03] hover:shadow-2xl">
       <div className="flex items-center gap-4">
         <button className='bg-[#ddad00e6] p-3 text-xl font-bold text-[#f5f5f5] rounded-lg'>
           {getInitials(order.customerDetails?.Name)}
