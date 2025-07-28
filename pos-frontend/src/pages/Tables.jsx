@@ -34,7 +34,7 @@ const Tables = () => {
           </button>
         </div>
       </div>
-      <div className='flex flex-wrap gap-6 px-8 py-6 overflow-y-auto h-[700px] bg-gradient-to-br from-[#e0e7ff] via-[#e0e7ff] to-[#6366f1] rounded-2xl hover:shadow-3xl ml-24 mr-8 overflow-y-scroll scrollbar-hide pt-4' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <div className='flex flex-wrap gap-6 px-8 py-6 h-[700px] bg-gradient-to-br from-[#e0e7ff] via-[#e0e7ff] to-[#6366f1] rounded-2xl hover:shadow-3xl ml-24 mr-8 overflow-y-scroll scrollbar-hide pt-4' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {
           tables
             .filter(table => status === 'all' ? true : table.status === 'Booked')
