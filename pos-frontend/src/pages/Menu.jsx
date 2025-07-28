@@ -6,12 +6,11 @@ import { MdDelete } from "react-icons/md";
 import { FaNotesMedical } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../redux/cartSlice';
+import { useMutation } from '@tanstack/react-query';
+import { addOrder } from '../https/index'; // Import the addOrder function
 
 const Menu = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const handlePlaceOrder = () => {
-    enqueueSnackbar('Order Placed!', { variant: 'success' });
-  };
   const customerData = useSelector(state => state.customer);
   const cartData = useSelector((state) => state.cart);
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -59,6 +58,41 @@ const Menu = () => {
   const tax = totalPrice * 0.0525;
   const finalPrice = totalPrice + tax;
 
+  // Place the order
+  const orderData = {
+        customerDetails: {
+         Name: customerData.customerName,
+         ID: customerData.customerID,
+        },
+        orderStatus: "In Progress",
+        bills: {
+          total: totalPrice,
+          tax: tax,
+          totalWithTax: finalPrice,
+        },
+        items: cartData,
+        
+      };
+      
+      
+      
+      const orderMutation = useMutation({
+        mutationFn: (reqData) => addOrder(reqData),
+        onSuccess: (resData) => {
+          const {data} = resData.data;
+          console.log(data);
+
+          enqueueSnackbar('Order placed successfully!', { variant: 'success' });
+        },
+        onError: (error) => {
+          console.error(error);
+        }
+      })
+
+      const handlePlaceOrder = () => {
+        orderMutation.mutate(orderData);
+      };
+
   return (
     <section className='bg-[#1a1a1a] h-[calc(100.8vh-5rem)] overflow-hidden flex gap-4'>
       {/* left */}
@@ -72,7 +106,6 @@ const Menu = () => {
             <div className="flex items-center gap-2 cursor-pointer">
               <div className="flex flex-col items-start">
                 <h1 className="text-lg font-semibold text-[#f5f5f5]">{customerData.customerName  || "Customer Name"}</h1>
-                <p className="text-xs text-[#7c7777]">Admin</p>
               </div>
             </div>
           </div>

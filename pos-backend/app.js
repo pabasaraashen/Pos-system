@@ -1,10 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/database");
-//const { config } = require("dotenv");
 const config = require("./config/config");
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
-//const createHttpError = require("http-errors");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 

@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
 import Ordercard from '../components/shared/orders/Ordercard';
 import BackButton from '../components/shared/BackButton';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { getOrders } from '../https';
+import { enqueueSnackbar } from 'notistack';
 
 const Orders = () => {
 
     const [status, setStatus] = useState("all");
+
+    const { data: resData, error } = useQuery({
+        queryKey: ['orders'],
+        queryFn: async () => {
+          return await getOrders();
+        },
+        placeholderData: keepPreviousData
+    });
+
+     if( error) {
+    enqueueSnackbar("Something went wrong!", {variant: "error"})
+  }
+
+
   return (
     <section className='bg-[#1a1a1a] h-[calc(100vh-5rem)] overflow-hidden'>
         <div className='flex items-center justify-between px-8 py-4'>
@@ -28,22 +45,15 @@ const Orders = () => {
         </div>
         </div>
 
-        <div className=' flex flex-wrap gap-10 px-16 py-4 overflow-y-auto h-[700px]'>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
-             <Ordercard/>
+        <div className=' flex flex-wrap gap-10 px-16 py-4 overflow-y-auto '>
+             {
+          resData?.data.data.length > 0 ? (
+            resData.data.data.map((order) => {
+              return < Ordercard key={order._id} order={order} />
+            })
+          ) : <p className="col-span-3 text-gray-500">No orders available</p>
+        }
+             
         </div>
        
         
