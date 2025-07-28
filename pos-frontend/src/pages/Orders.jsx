@@ -91,7 +91,7 @@ const Orders = () => {
 
             <div className='flex flex-wrap gap-10 px-16 py-4 h-[calc(100vh-12rem)] overflow-y-scroll scrollbar-hide pt-4' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {isLoading ? (
-                    <div className="col-span-3 text-gray-500 flex justify-center items-center w-full">
+                    <div className="col-span-3 text-black flex justify-center items-center w-full">
                         <p>Loading orders...</p>
                     </div>
                 ) : filteredOrders.length > 0 ? (
@@ -99,7 +99,7 @@ const Orders = () => {
                         <Ordercard key={order._id} order={order} />
                     ))
                 ) : (
-                    <div className="col-span-3 text-gray-500 flex justify-center items-center w-full">
+                    <div className="col-span-3 text-black flex justify-center items-center w-full">
                         <p>No orders available for "{status === "all" ? "all statuses" : status}"</p>
                     </div>
                 )}

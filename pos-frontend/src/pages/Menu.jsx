@@ -153,7 +153,7 @@ const Menu = () => {
                       className='text-[#ababab] cursor-pointer'
                       size={20}
                     />
-                    <FaNotesMedical className='text-[#ababab] cursor-pointer' size={20} />
+                  
                   </div>
                   <p className='text-[#f5f5f5] text-md font-bold'>Rs.{(Item.price * Item.count).toFixed(2)}</p>
                 </div>
