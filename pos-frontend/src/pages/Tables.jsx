@@ -22,13 +22,13 @@ const Tables = () => {
         <div className="flex items-center gap-4">
           <button
             onClick={() => setStatus('all')}
-            className={`text-lg font-semibold px-6 py-2 rounded-xl border border-[#6366f1] shadow-sm transition-all duration-200 ${status === 'all' ? 'bg-[#181a94] text-white scale-105' : 'bg-white text-[#2563eb] hover:bg-[#e0e7ff] hover:text-[#6366f1]'}`}
+            className={`text-lg font-semibold px-6 py-2 rounded-xl shadow-sm transition-all duration-200 ${status === 'all' ? 'bg-[#181a94] text-white scale-105' : 'bg-white text-[#2563eb] hover:bg-[#e0e7ff] hover:text-[#6366f1]'}`}
           >
             All
           </button>
           <button
             onClick={() => setStatus('booked')}
-            className={`text-lg font-semibold px-6 py-2 rounded-xl border border-[#6366f1] shadow-sm transition-all duration-200 ${status === 'booked' ? 'bg-[#6366f1] text-white scale-105' : 'bg-white text-[#2563eb] hover:bg-[#e0e7ff] hover:text-[#6366f1]'}`}
+            className={`text-lg font-semibold px-6 py-2 rounded-xl shadow-sm transition-all duration-200 ${status === 'booked' ? 'bg-[#6366f1] text-white scale-105' : 'bg-white text-[#2563eb] hover:bg-[#e0e7ff] hover:text-[#6366f1]'}`}
           >
             Booked
           </button>

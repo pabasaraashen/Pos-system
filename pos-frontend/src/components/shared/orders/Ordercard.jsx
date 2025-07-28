@@ -23,7 +23,7 @@ const Ordercard = ({ order }) => {
     switch (status.toLowerCase()) {
       case 'in progress':
         return {
-          color: 'text-yellow-500',
+          color: 'text-yellow-600',
           icon: <FaClock className='inline mr-2' />,
           text: 'In Progress'
         };
@@ -71,10 +71,10 @@ const Ordercard = ({ order }) => {
         </button>
         <div className='flex items-center justify-between w-[100%]'>
           <div className='flex flex-col items-start gap-1.5'>
-            <h1 className='text-[#f5f5f5] text-lg font-medium'>
+            <h1 className='text-black text-lg font-medium'>
               {order.customerDetails?.Name || 'Unknown Customer'}
             </h1>
-            <p className='text-[#f5f5f5] text-sm'>
+            <p className='text-[#424242] text-sm'>
               {order.customerDetails?.ID || 'N/A'} / Dine in
             </p>
           </div>
@@ -95,8 +95,8 @@ const Ordercard = ({ order }) => {
 
       <hr className='w-full mt-4 text-[#2d2d2d]' />
       <div className="flex items-center justify-between mt-4">
-        <h1 className="text-[#f5f5f5] text-lg font-semibold">Total</h1>
-        <p className="text-[#f5f5f5] text-lg font-semibold">
+        <h1 className="text-black text-lg font-semibold">Total</h1>
+        <p className="text-black text-lg font-semibold">
           Rs.{order.bills?.totalWithTax?.toFixed(2) || '0.00'}
         </p>
       </div>
