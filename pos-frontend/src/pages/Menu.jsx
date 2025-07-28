@@ -5,9 +5,9 @@ import MenuContainer from '../components/menu/MenuContainer';
 import { MdDelete } from "react-icons/md";
 import { FaNotesMedical } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem } from '../redux/cartSlice';
-import { useMutation } from '@tanstack/react-query';
-import { addOrder } from '../https/index'; // Import the addOrder function
+import { removeItem } from '../redux/cartSlice'; // Remove clearCart from this import
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addOrder } from '../https/index';
 
 const Menu = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -16,6 +16,7 @@ const Menu = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const scrollRef = useRef();
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if(scrollRef.current){
@@ -26,7 +27,6 @@ const Menu = () => {
     }
   })
 
-  // ✅ FIXED: correct arrow function syntax
   const handleRemove = (itemID) => {
     dispatch(removeItem(itemID));
   };
@@ -58,40 +58,47 @@ const Menu = () => {
   const tax = totalPrice * 0.0525;
   const finalPrice = totalPrice + tax;
 
-  // Place the order
   const orderData = {
-        customerDetails: {
-         Name: customerData.customerName,
-         ID: customerData.customerID,
-        },
-        orderStatus: "In Progress",
-        bills: {
-          total: totalPrice,
-          tax: tax,
-          totalWithTax: finalPrice,
-        },
-        items: cartData,
-        
-      };
+    customerDetails: {
+      Name: customerData.customerName,
+      ID: customerData.customerID,
+    },
+    orderStatus: "In Progress",
+    bills: {
+      total: totalPrice,
+      tax: tax,
+      totalWithTax: finalPrice,
+    },
+    items: cartData,
+  };
       
-      
-      
-      const orderMutation = useMutation({
-        mutationFn: (reqData) => addOrder(reqData),
-        onSuccess: (resData) => {
-          const {data} = resData.data;
-          console.log(data);
+  const orderMutation = useMutation({
+    mutationFn: (reqData) => addOrder(reqData),
+    onSuccess: (resData) => {
+      const {data} = resData.data;
+      console.log(data);
 
-          enqueueSnackbar('Order placed successfully!', { variant: 'success' });
-        },
-        onError: (error) => {
-          console.error(error);
-        }
-      })
+      enqueueSnackbar('Order placed successfully!', { variant: 'success' });
+      
+      // Invalidate and refetch orders query to show the new order immediately
+      queryClient.invalidateQueries({ queryKey: ['orders'] });
+      
+      // Optional: You can manually clear cart items one by one if needed
+      // cartData.forEach(item => dispatch(removeItem(item.id)));
+    },
+    onError: (error) => {
+      console.error(error);
+      enqueueSnackbar('Failed to place order. Please try again.', { variant: 'error' });
+    }
+  });
 
-      const handlePlaceOrder = () => {
-        orderMutation.mutate(orderData);
-      };
+  const handlePlaceOrder = () => {
+    if (cartData.length === 0) {
+      enqueueSnackbar('Cart is empty. Please add items before placing order.', { variant: 'warning' });
+      return;
+    }
+    orderMutation.mutate(orderData);
+  };
 
   return (
     <section className='bg-[#1a1a1a] h-[calc(100.8vh-5rem)] overflow-hidden flex gap-4'>
@@ -188,10 +195,11 @@ const Menu = () => {
         <div className='flex items-center gap-3 px-5 mt-4'>
           <button className='px-4 py-3 w-full rounded-lg bg-[#0f42ba] text-[#f5f5f5] font-semibold'>Receipt</button>
           <button
-            className='px-4 py-3 w-full rounded-lg bg-[#c6b112] text-[#f5f5f5] font-semibold'
+            className='px-4 py-3 w-full rounded-lg bg-[#c6b112] text-[#f5f5f5] font-semibold disabled:opacity-50 disabled:cursor-not-allowed'
             onClick={handlePlaceOrder}
+            disabled={orderMutation.isPending}
           >
-            Place Order
+            {orderMutation.isPending ? 'Placing...' : 'Place Order'}
           </button>
         </div>
       </div>
