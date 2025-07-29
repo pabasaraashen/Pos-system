@@ -47,7 +47,7 @@ const RecentOrders = () => {
     return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, '0')}, ${date.getFullYear()} ${formattedHour}:${formattedMinute} ${ampm}`;
   };
 
-  // Get recent orders (latest 10)
+  // Get recent orders 
   const getRecentOrders = () => {
     if (!resData?.data?.data) return [];
     
@@ -83,13 +83,13 @@ const RecentOrders = () => {
   };
 
   return (
-    <div className="container mx-auto bg-[#262626] p-4 rounded-lg">
-      <h2 className="text-[#f5f5f5] text-xl font-semibold mb-4">
+    <div className="container mx-auto bg-[#e0e7ff] p-4 rounded-lg">
+      <h2 className="text-[#000000] text-2xl text-center font-semibold mb-4">
         Recent Orders
       </h2>
       <div className="overflow-x-auto overflow-y-scroll h-[700px] scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        <table className="w-full text-left text-[#f5f5f5]">
-          <thead className="bg-[#333] text-[#ababab]">
+        <table className="w-full text-left text-[#000000]">
+          <thead className="bg-[#dedede] text-center text-[#000000]">
             <tr>
               <th className="p-3">Order ID</th>
               <th className="p-3">Customer</th>
@@ -115,13 +115,13 @@ const RecentOrders = () => {
                 return (
                   <tr
                     key={order._id}
-                    className="border-b border-gray-600 hover:bg-[#333]"
+                    className="border-b text-center border-gray-600 hover:bg-[#fff]"
                   >
                     <td className="p-4">#{orderId}</td>
                     <td className="p-4">{order.customerDetails?.Name || 'Unknown Customer'}</td>
                     <td className="p-4">
                       <select
-                        className={`bg-[#1a1a1a] text-[#f5f5f5] border border-gray-500 p-2 rounded-lg focus:outline-none ${getStatusColor(order.orderStatus)} ${orderStatusUpdateMutation.isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        className={`bg-[#525252] text-[#ffffff] border border-gray-500 p-2 rounded-lg focus:outline-none ${getStatusColor(order.orderStatus)} ${orderStatusUpdateMutation.isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
                         value={order.orderStatus || 'In Progress'}
                         onChange={(e) => handleStatusChange(order._id, e.target.value)}
                         disabled={orderStatusUpdateMutation.isPending}
@@ -142,7 +142,7 @@ const RecentOrders = () => {
                     <td className="p-4">Rs.{order.bills?.totalWithTax?.toFixed(2) || '0.00'}</td>
                     <td className="p-4 text-center">
                       <button 
-                        className="text-blue-400 hover:text-blue-500 transition"
+                        className="text-blue-700 hover:text-blue-500 transition"
                         onClick={() => console.log('Update order:', order._id)}
                       >
                         <GrUpdate size={20} />

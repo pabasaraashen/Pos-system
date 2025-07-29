@@ -13,19 +13,19 @@ const Dashboard = () => {
     const [activeTab, setActiveTab] = useState("Metrics");
 
     return (
-        <div className='bg-[#1f1f1f] h-[calc(100vh-5rem)] flex'>
+        <div className='bg-[#e0e7ff] h-[calc(100vh-5rem)] flex'>
             {/* Sidebar */}
-            <div className='w-64 bg-[#262626] border-r border-gray-700'>
+            <div className='w-64 bg-[#ccd8fd] border-r border-[#ccd8fd]'>
                 <div className='p-6'>
-                    <h2 className='text-white text-xl font-semibold mb-6'>Dashboard</h2>
+                    <h2 className='text-[#181a94] text-3xl font-semibold mb-6'>Dashboard</h2>
                     <nav className='space-y-2'>
                         {sidebarItems.map((item) => (
                             <button
                                 key={item.key}
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
                                     activeTab === item.key 
-                                        ? 'bg-gray-700 text-white' 
-                                        : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                                        ? 'bg-gray-200 text-black' 
+                                        : 'text-gray-600 hover:bg-gray-600 hover:text-white'
                                 }`}
                                 onClick={() => setActiveTab(item.key)}
                             >
@@ -44,7 +44,7 @@ const Dashboard = () => {
                     {activeTab === "Orders" && <RecentOrders />}
                     {activeTab === "Payment" && (
                         <div className='container mx-auto py-8 px-6 md:px-4'>
-                            <div className='text-center text-white'>
+                            <div className='text-center text-black'>
                                 <h2 className='text-2xl font-semibold mb-4'>Payment</h2>
                                 <p className='text-gray-400 text-center'>Loading....</p>
                             </div>
