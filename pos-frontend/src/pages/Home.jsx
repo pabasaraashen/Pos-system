@@ -56,7 +56,7 @@ const Home = () => {
           />
           {/* Custom In Progress Card with Chart */}
           <div className="flex-1 bg-gradient-to-br from-white via-[#e0e7ff] to-[#92a1dd] py-5 px-5 rounded-xl w-[50%] shadow-lg border border-[#c7d2fe] transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl">
-            <div className="flex items-center gap-10 mb-2">
+            <div className="flex items-center gap-16 mb-2">
               <span className="text-lg font-semibold text-[#025cca]">In Progress</span>
               <span className="bg-[#025cca] p-2 rounded-full">
                 <RiProgress1Line className='text-white text-xl' />
