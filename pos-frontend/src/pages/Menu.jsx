@@ -101,18 +101,18 @@ const Menu = () => {
   };
 
   return (
-    <section className='bg-[#1a1a1a] h-[calc(100.8vh-5rem)] overflow-hidden flex gap-4'>
+    <section className='bg-[#e0e7ff] h-[calc(100.8vh-5rem)] overflow-hidden flex gap-4'>
       {/* left */}
-      <div className='flex-[5] bg-[#474747]'>
+      <div className='flex-[5] bg-[#e0e7ff]'>
         <div className='flex items-center justify-between px-8 py-4'>
           <div className='flex items-center gap-4'>
             <BackButton />
-            <h1 className='text-[#f5f5f5] text-2xl font-bold'>Menu</h1>
+            <h1 className='text-[#181a94] text-3xl font-bold'>Menu</h1>
           </div>
           <div className="flex items-center justify-around gap-4">
             <div className="flex items-center gap-2 cursor-pointer">
               <div className="flex flex-col items-start">
-                <h1 className="text-lg font-semibold text-[#f5f5f5]">{customerData.customerName  || "Customer Name"}</h1>
+                <h1 className="text-lg font-semibold text-[#000000]">{customerData.customerName  || "Customer Name"}</h1>
               </div>
             </div>
           </div>
@@ -121,41 +121,41 @@ const Menu = () => {
       </div>
 
       {/* right */}
-      <div className='flex-[2.5] bg-[#1a1a1a] mt-4 mr-3 h-[780px] rounded-lg pt-2'>
+      <div className='flex-[1.5] bg-[#b7c5f5] mt-4 mr-3 h-[850px] rounded-lg pt-2'>
         {/* customer info */}
         <div className='flex items-center justify-between px-4 py-3'>
           <div className='flex flex-col items-start'>
-            <h1 className='text-lg text-[#f5f5f5] font-semibold'>{customerData.customerName || "Customer Name" }</h1>
-            <p className='text-sm text-[#ababab] font-medium mt-2'>
+            <h1 className='text-lg text-[#000000] font-semibold'>{customerData.customerName || "Customer Name" }</h1>
+            <p className='text-sm text-[#555555] font-medium mt-2'>
               {formatDateTime(currentDateTime)}
             </p>
           </div>
-          <h1 className='text-md text-[#f5f5f5] font-semibold mt-1'>Order ID: {customerData.customerID || "N/A"}</h1>
+          <h1 className='text-md text-[#000000] font-semibold mt-1'>Order ID: {customerData.customerID || "N/A"}</h1>
         </div>
         <hr className='border-[#2a2a2a] border-t-2' />
 
         {/* cart items */}
         <div className='px-4 py-2'>
-          <h1 className='text-lg text-[#e4e4e4] font-semibold'>Order Details</h1>
-          <div className='mt-4 overflow-y-scroll scroll-hide h-[380px]' ref={scrollRef}>
+          <h1 className='text-lg text-[#000000] font-semibold'>Order Details</h1>
+          <div className='mt-4 h-[380px] ref={scrollRef} overflow-y-scroll scrollbar-hide pt-4' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {cartData.length === 0 ? (
-              <p className='text-white flex justify-center items-center h-[380px]'>Cart is empty.</p>
+              <p className='text-[#555555] flex justify-center items-center h-[380px]'>Cart is empty.</p>
             ) : cartData.map((Item) => (
-              <div key={Item.id} className='bg-[#1f1f1f] rounded-lg px-4 py-4 mb-2'>
+              <div key={Item.id} className='bg-[#c7d2f8] rounded-lg px-4 py-4 mb-2'>
                 <div className='flex items-center justify-between'>
-                  <h1 className='text-[#ababab] font-semibold text-md'>{Item.name}</h1>
-                  <p className='text-[#ababab] font-semibold'>x{Item.count}</p>
+                  <h1 className='text-[#2a2a2a] font-semibold text-md'>{Item.name}</h1>
+                  <p className='text-[#2a2a2a] font-semibold'>x{Item.count}</p>
                 </div>
                 <div className='flex items-center justify-between mt-3'>
                   <div className='flex items-center gap-3'>
                     <MdDelete
                       onClick={() => handleRemove(Item.id)}
-                      className='text-[#ababab] cursor-pointer'
+                      className='text-[#090909] cursor-pointer'
                       size={20}
                     />
                   
                   </div>
-                  <p className='text-[#f5f5f5] text-md font-bold'>Rs.{(Item.price * Item.count).toFixed(2)}</p>
+                  <p className='text-[#000000] text-md font-bold'>Rs.{(Item.price * Item.count).toFixed(2)}</p>
                 </div>
               </div>
             ))}
@@ -164,26 +164,26 @@ const Menu = () => {
 
         {/* bill summary */}
         <div className='flex items-center justify-between px-5 mt-2'>
-          <p className='text-base text-[#ababab] mt-2'>Item({totalItems})</p>
-          <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.{totalPrice.toFixed(2)}</h1>
+          <p className='text-base text-[#4a4a4a] mt-2'>Item({totalItems})</p>
+          <h1 className='text-[#000000] text-md font-bold'>Rs.{totalPrice.toFixed(2)}</h1>
         </div>
         <div className='flex items-center justify-between px-5 mt-2'>
-          <p className='text-base text-[#ababab] mt-2'>Tax(5.25%)</p>
-          <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.{tax.toFixed(2)}</h1>
+          <p className='text-base text-[#4a4a4a] mt-2'>+Tax</p>
+          <h1 className='text-[#000000] text-md font-bold'>Rs.{tax.toFixed(2)}</h1>
         </div>
         <br/>
 
         <hr className='border-[#2a2a2a] border-t-2' />
         
         <div className='flex items-center justify-between px-5 mt-2'>
-          <p className='text-base text-[#ababab] mt-2'>Total</p>
-          <h1 className='text-[#f5f5f5] text-md font-bold'>Rs.{finalPrice.toFixed(2)}</h1>
+          <p className='text-base text-[#4a4a4a] mt-2'>Total</p>
+          <h1 className='text-[#000000] text-md font-bold'>Rs.{finalPrice.toFixed(2)}</h1>
         </div>
 
         {/* payment method */}
         <div className='flex items-center px-5 mt-4'>
           <select
-            className='bg-[#1f1f1f] text-[#ababab] font-semibold px-4 py-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6366f1] transition'
+            className='bg-[#808080] text-[#ffffff] font-semibold px-4 py-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6366f1] transition'
             defaultValue="cash"
           >
             <option value="cash">Cash</option>
@@ -193,9 +193,8 @@ const Menu = () => {
 
         {/* action buttons */}
         <div className='flex items-center gap-3 px-5 mt-4'>
-          <button className='px-4 py-3 w-full rounded-lg bg-[#0f42ba] text-[#f5f5f5] font-semibold'>Receipt</button>
           <button
-            className='px-4 py-3 w-full rounded-lg bg-[#c6b112] text-[#f5f5f5] font-semibold disabled:opacity-50 disabled:cursor-not-allowed'
+            className='px-4 py-3 w-full rounded-lg bg-[#ffd700] text-[#000000] font-semibold disabled:opacity-50 disabled:cursor-not-allowed'
             onClick={handlePlaceOrder}
             disabled={orderMutation.isPending}
           >

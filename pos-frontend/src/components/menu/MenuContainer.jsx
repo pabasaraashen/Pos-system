@@ -39,7 +39,7 @@ const MenuContainer = () => {
               key={menu.id}
               onClick={() => handleSelect(menu.id)}
               className={`flex flex-col items-center justify-between p-4 rounded-lg h-[100px] cursor-pointer transition duration-200 
-                ${isSelected ? 'bg-[#1c034d]' : 'bg-[#4609cb]'}`}
+                ${isSelected ? 'bg-[#193497] ' : 'bg-[#5974d5] '}`}
             >
               <div className='flex items-center justify-between w-full'>
                 <h1 className='text-white text-lg font-semibold'>
@@ -47,7 +47,7 @@ const MenuContainer = () => {
                 </h1>
                 {isSelected && <GrRadialSelected className='text-white' size={20} />}
               </div>
-              <p className='text-[#fff085] text-sm font-semibold'>
+              <p className='text-[#eddf74] text-sm font-semibold'>
                 {menu.items.length} Items
               </p>
             </div>
@@ -62,7 +62,7 @@ const MenuContainer = () => {
             <div
               key={dish.id}
               onClick={() => handleDishClick(dish)}
-              className="bg-[#1c034d] text-white p-4 rounded-lg shadow-md cursor-pointer hover:bg-[#3e3e3e] transition"
+              className="bg-[#193497] text-white p-4 rounded-lg shadow-md cursor-pointer hover:bg-[#5974d5] transition"
             >
               <h3 className="font-bold text-lg">{dish.name}</h3>
               <p className="text-sm">Rs.{dish.price}</p>

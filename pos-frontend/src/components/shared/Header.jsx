@@ -32,7 +32,7 @@ const Header = () => {
   }
 
   const navigate = useNavigate();
-  const location = useLocation(); // 🔥 Use location hook
+  const location = useLocation(); 
   const currentPath = location.pathname;
 
   const isActive = (path) =>

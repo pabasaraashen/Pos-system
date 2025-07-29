@@ -71,7 +71,6 @@ const Register = ({ onSwitchToLogin }) => {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
         <div className="text-center">
           <h2 className="mt-6 text-3xl font-bold text-gray-900">Create Account</h2>
-          <p className="mt-2 text-sm text-gray-600">Join us today</p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
@@ -158,7 +157,6 @@ const Register = ({ onSwitchToLogin }) => {
                   onChange={handleChange}
                   className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                 >
-                  <option value="waiter">Waiter</option>
                   <option value="admin">Admin</option>
                   <option value="cashier">Cashier</option>
                 </select>
