@@ -20,3 +20,4 @@ export const logout = () => api.post('/api/user/logout');
 // Order API Endpoints
 export const addOrder = (data) => api.post('/api/order', data);
 export const getOrders = () => api.get('/api/order');
+export const updateOrderStatus = (id, orderStatus) => api.put(`/api/order/${id}`, { orderStatus });

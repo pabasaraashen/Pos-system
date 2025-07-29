@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const TableCard = ({ key, name, status: initialStatus, initials }) => {
+const TableCard = ({ key, name, status: initialStatus }) => {
   const navigate = useNavigate();
   const [status, setStatus] = React.useState(initialStatus);
 
