@@ -10,7 +10,7 @@ const Card1 = ({title, icon, number, footerNum}) => {
       <div>
         <h1 className="text-[#1e293b] text-4xl font-bold mt-5">{
           title === "Total Earnings" ? `Rs.${number}` : number}</h1>
-        <h1 className="text-[#64748b] text-lg mt-2"><span className="text-[#00a11b] font-bold">{footerNum}%</span> than yesterday</h1>
+        <h1 className="text-[#64748b] text-lg mt-2"><span className="text-[#00a11b] font-bold">{footerNum}%up</span> last month </h1>
       </div>
     </div>
   )

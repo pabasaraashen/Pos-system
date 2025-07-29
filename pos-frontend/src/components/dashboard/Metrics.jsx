@@ -175,7 +175,7 @@ const Metrics = () => {
           <div className="mt-10 flex flex-col md:flex-row gap-8 justify-center items-stretch">
             {/* Pie Chart */}
             <div className="bg-white rounded-lg shadow p-6 w-full md:w-1/2 flex flex-col justify-center">
-              <h3 className="text-lg font-semibold text-gray-700 mb-4 text-center">Order Status Distribution</h3>
+              <h3 className="text-lg font-semibold text-gray-700 mb-4 text-center">Order Status</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
                   <Pie
@@ -198,7 +198,7 @@ const Metrics = () => {
             </div>
             {/* Revenue Line Chart */}
             <div className="bg-white rounded-lg shadow p-6 w-full md:w-1/2 flex flex-col justify-center">
-              <h3 className="text-lg font-semibold text-gray-700 mb-4 text-center">Revenue Over Time</h3>
+              <h3 className="text-lg font-semibold text-gray-700 mb-4 text-center">Revenue</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={revenueByDate}>
                   <CartesianGrid strokeDasharray="3 3" />
