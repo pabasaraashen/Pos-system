@@ -16,16 +16,22 @@ const Header = () => {
   const dispatch = useDispatch();
   
   const logoutMutation = useMutation({
-    mutationFn: () => logout(),
-    onSuccess: (data) => {
-      console.log(data);
+  mutationFn: () => logout(),
+  onSuccess: (data) => {
+    console.log(data);
+    dispatch(clearUser());
+    navigate("/auth");
+  },
+  onError: (error) => {
+    // If 401, treat as logged out
+    if (error?.response?.status === 401) {
       dispatch(clearUser());
       navigate("/auth");
-    },
-    onError: (error) => {
+    } else {
       console.error(error);
     }
-  })
+  }
+})
 
   const handleLogout = () => {
     logoutMutation.mutate();

@@ -16,9 +16,12 @@ const RecentOrder = () => {
     placeholderData: keepPreviousData
   });
 
-  if (error) {
-    enqueueSnackbar("Something went wrong!", {variant: "error"});
-  }
+  React.useEffect(() => {
+    if (error) {
+      enqueueSnackbar("Something went wrong!", { variant: "error" });
+    }
+  }, [error]);
+
 
   // Filter orders based on search term and get recent orders (latest 10)
   const getFilteredOrders = () => {
