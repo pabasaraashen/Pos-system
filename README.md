@@ -1,4 +1,4 @@
-# 💻 POS System
+<img width="1920" height="1080" alt="homepage" src="https://github.com/user-attachments/assets/5735cb26-64be-498d-8156-6d24825424fb" /># 💻 POS System
 
 I recently developed a **full-featured Point of Sale (POS) System** tailored for modern 🍽️ restaurants.  
 This solution is built to streamline **order management, payment processing, and business analytics**,  
@@ -28,5 +28,8 @@ delivering a seamless experience for both staff and management.
 ---
 
 ✨ *This project demonstrates how modern web technologies can power a scalable POS solution for restaurants.*  
+<img width="1920" height="1080" alt="homepage" src="https://github.com/user-attachments/assets/f8d8b0c8-364a-4419-b381-42eefd236f75" />
+
+
 
 
