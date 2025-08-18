@@ -33,6 +33,12 @@ delivering a seamless experience for both staff and management.
 
 <img width="1920" height="1080" alt="homepage" src="https://github.com/user-attachments/assets/f8d8b0c8-364a-4419-b381-42eefd236f75" />
 
+<img width="1920" height="1080" alt="admindashboard1" src="https://github.com/user-attachments/assets/89526cbf-7d6d-49d7-996f-f6d894c44193" />
 
+<img width="1920" height="1080" alt="admindashboard2" src="https://github.com/user-attachments/assets/d3e867d2-2c25-4131-8f51-270d9f5bdf6c" />
 
+<img width="1920" height="1080" alt="orderpage" src="https://github.com/user-attachments/assets/7e050b83-9e12-439c-aead-102348c34e1c" />
 
+<img width="1920" height="1080" alt="databasetestusers" src="https://github.com/user-attachments/assets/ca9ca801-33f1-4adb-841f-d234363708c9" />
+
+<img width="1920" height="1080" alt="testlogin" src="https://github.com/user-attachments/assets/1260a6b0-994a-43ee-9aed-b264aac7136a" />
