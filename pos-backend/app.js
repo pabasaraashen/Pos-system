@@ -13,8 +13,8 @@ connectDB();
 
 //Middlewares
 app.use(cors({
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-    origin: "http://localhost:5173",// Replace with your frontend URL
+    credentials: true, // Allow credentials (cookies, authorization headers)
+    origin: ['http://localhost:5173', 'http://localhost:5174'],//  frontend URL
     
 })); // Allow cross-origin requests
 app.use(express.json()); // parse incoming request in json format
