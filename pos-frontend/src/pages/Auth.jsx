@@ -3,7 +3,7 @@ import Login from '../components/auth/login/Login';
 import Register from '../components/auth/register/Register';
 
 const Auth = () => {
-  const [currentView, setCurrentView] = useState('login') // Start with login view
+  const [currentView, setCurrentView] = useState('login') // Start with login
 
   const switchToLogin = () => setCurrentView('login')
   const switchToRegister = () => setCurrentView('register')

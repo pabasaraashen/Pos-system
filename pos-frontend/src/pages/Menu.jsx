@@ -83,8 +83,6 @@ const Menu = () => {
       // Invalidate and refetch orders query to show the new order immediately
       queryClient.invalidateQueries({ queryKey: ['orders'] });
       
-      // Optional: You can manually clear cart items one by one if needed
-      // cartData.forEach(item => dispatch(removeItem(item.id)));
     },
     onError: (error) => {
       console.error(error);

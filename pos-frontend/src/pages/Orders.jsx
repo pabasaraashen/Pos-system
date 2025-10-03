@@ -48,7 +48,7 @@ const Orders = () => {
         return filteredOrders.sort((a, b) => {
             const dateA = new Date(a.createdAt || a._id);
             const dateB = new Date(b.createdAt || b._id);
-            return dateB - dateA; // Descending order (latest first)
+            return dateB - dateA; 
         });
     };
 
